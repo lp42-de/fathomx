@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FathomX — Power Beyond Borders</title>
+  <meta name="description" content="FathomX harnesses solar, wind, and wave energy from international waters — transmitting clean power and AI compute capacity to mainland grids worldwide." />
+  <meta property="og:title" content="FathomX — Power Beyond Borders" />
+  <meta property="og:description" content="Offshore renewable energy and AI compute infrastructure in international waters." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fathomx.com/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0e14;
+      --ink2: #141a24;
+      --ink3: #1c2535;
+      --surf: #f4f7fb;
+      --muted: #8a96a8;
+      --line: #2a3545;
+      --cyan: #00c8e0;
+      --cyan2: #0099b8;
+      --amber: #f5a623;
+      --green: #22c55e;
+      --white: #ffffff;
+      --max: 1140px;
+      --r: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--ink);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2rem;
+      background: rgba(10,14,20,0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-logo {
+      font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em;
+      color: var(--white); text-decoration: none;
+    }
+    .nav-logo span { color: var(--cyan); }
+    .nav-cta {
+      background: var(--cyan); color: var(--ink);
+      padding: 0.5rem 1.25rem; border-radius: 6px;
+      font-weight: 600; font-size: 0.875rem;
+      text-decoration: none; transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: #00e8ff; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+      padding: 6rem 2rem 4rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,200,224,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(0,153,184,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 90%, rgba(245,166,35,0.06) 0%, transparent 60%),
+        var(--ink);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden; opacity: 0.12;
+      background-image:
+        linear-gradient(rgba(0,200,224,0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,224,0.3) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    #heroCanvas {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 820px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,200,224,0.1); border: 1px solid rgba(0,200,224,0.25);
+      border-radius: 100px; padding: 0.375rem 1rem;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 1.75rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan); animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.4)} }
+    .hero h1 {
+      font-size: clamp(2.75rem, 7vw, 5.5rem);
+      font-weight: 900; letter-spacing: -0.04em; line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--cyan); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 400;
+      color: rgba(255,255,255,0.65); max-width: 580px; margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--cyan); color: var(--ink);
+      padding: 0.875rem 2rem; border-radius: 8px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-primary:hover { background: #00e8ff; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,200,224,0.3); }
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      padding: 0.875rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: 1rem;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem; margin-top: 4rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-size: 2rem; font-weight: 800; color: var(--cyan); letter-spacing: -0.03em;
+      display: block;
+    }
+    .hero-stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: var(--max); margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.6);
+      max-width: 560px; line-height: 1.7;
+    }
+
+    /* ── THESIS ── */
+    .thesis { background: var(--ink2); }
+    .thesis-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .thesis-text { }
+    .thesis-blocks { display: flex; flex-direction: column; gap: 1.5rem; }
+    .thesis-block {
+      background: var(--ink3); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 1.5rem;
+      border-left: 3px solid var(--cyan);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .thesis-block:hover { border-left-color: var(--amber); transform: translateX(4px); }
+    .thesis-block h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .thesis-block p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    /* ── PLATFORM ── */
+    .platform { background: var(--ink); }
+    .platform-intro { max-width: 640px; margin-bottom: 4rem; }
+    .platform-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .platform-card {
+      background: var(--ink2); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 2rem; position: relative;
+      overflow: hidden; transition: border-color 0.3s, transform 0.2s;
+    }
+    .platform-card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+    .platform-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .platform-card:hover::before { opacity: 1; }
+    .pc-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(0,200,224,0.1); border: 1px solid rgba(0,200,224,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .platform-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .platform-card p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .pc-stat {
+      margin-top: 1.25rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.8rem; color: var(--cyan); font-weight: 600;
+    }
+
+    /* ── VISION TIMELINE ── */
+    .vision { background: var(--ink2); }
+    .timeline { position: relative; margin-top: 3.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 24px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--cyan), rgba(0,200,224,0.1));
+    }
+    .tl-item {
+      display: flex; gap: 2rem; margin-bottom: 2.5rem; position: relative;
+    }
+    .tl-dot {
+      width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0;
+      background: var(--ink3); border: 2px solid var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 800; color: var(--cyan);
+      position: relative; z-index: 1;
+    }
+    .tl-dot.amber { border-color: var(--amber); color: var(--amber); }
+    .tl-dot.green { border-color: var(--green); color: var(--green); }
+    .tl-body {
+      background: var(--ink3); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 1.5rem; flex: 1;
+    }
+    .tl-phase { font-size: 0.75rem; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; }
+    .tl-phase.amber { color: var(--amber); }
+    .tl-phase.green { color: var(--green); }
+    .tl-body h4 { font-size: 1.05rem; font-weight: 700; margin: 0.25rem 0 0.5rem; }
+    .tl-body p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .tl-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+    .tl-tag {
+      font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px;
+      background: rgba(0,200,224,0.1); border: 1px solid rgba(0,200,224,0.2);
+      color: var(--cyan); font-weight: 600;
+    }
+
+    /* ── ECONOMICS ── */
+    .economics { background: var(--ink); }
+    .econ-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .econ-card {
+      background: var(--ink2); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 2rem;
+    }
+    .econ-card h3 { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .econ-num { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.03em; color: var(--cyan); }
+    .econ-sub { font-size: 0.875rem; color: rgba(255,255,255,0.5); margin-top: 0.25rem; }
+    .econ-disclaimer { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+
+    /* ── WHY NOW ── */
+    .why { background: var(--ink2); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .why-card {
+      background: var(--ink3); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 1.75rem;
+    }
+    .why-num {
+      font-size: 2.5rem; font-weight: 900; color: rgba(0,200,224,0.2);
+      letter-spacing: -0.04em; margin-bottom: 0.5rem; font-family: 'Inter', monospace;
+    }
+    .why-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .why-card p { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    /* ── JOIN ── */
+    .join { background: var(--ink); }
+    .join-wrap {
+      max-width: 680px; margin: 0 auto; text-align: center;
+    }
+    .join-wrap .section-sub { margin: 0 auto 3rem; }
+    .join-form {
+      background: var(--ink2); border: 1px solid var(--line);
+      border-radius: 16px; padding: 2.5rem;
+      text-align: left;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .form-group label {
+      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7);
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--ink3); border: 1px solid var(--line);
+      border-radius: 8px; padding: 0.75rem 1rem;
+      color: var(--white); font-size: 0.95rem; font-family: inherit;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--cyan); }
+    .form-group select option { background: var(--ink3); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-consent {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      margin-bottom: 1.5rem; cursor: pointer;
+    }
+    .form-consent input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--cyan); }
+    .form-consent span { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+    .form-submit {
+      width: 100%; background: var(--cyan); color: var(--ink);
+      border: none; border-radius: 8px; padding: 1rem;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: all 0.2s; font-family: inherit;
+    }
+    .form-submit:hover { background: #00e8ff; transform: translateY(-1px); box-shadow: 0 8px 32px rgba(0,200,224,0.3); }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .form-success {
+      display: none; text-align: center; padding: 2rem 0;
+    }
+    .form-success .check {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(34,197,94,0.15); border: 2px solid var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin: 0 auto 1rem;
+    }
+    .form-success h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .form-success p { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink2); border-top: 1px solid var(--line);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .footer-logo { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .footer-logo span { color: var(--cyan); }
+    .footer-sub { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .thesis-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .platform-cards { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .econ-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+      .platform-cards { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .econ-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+      .join-form { padding: 1.5rem; }
+      .timeline::before { left: 20px; }
+      .tl-dot { width: 42px; height: 42px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Fathom<span>X</span></a>
+  <a href="#join" class="nav-cta">Join the Mission</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Beyond the horizon</div>
+    <h1>Power has no<br><em>borders.</em></h1>
+    <p class="hero-sub">
+      FathomX builds offshore renewable energy platforms in international waters —
+      harvesting solar, wind, and wave energy, then transmitting it and AI compute capacity
+      directly to mainland grids worldwide.
+    </p>
+    <div class="hero-actions">
+      <a href="#join" class="btn-primary">Join the founding team</a>
+      <a href="#thesis" class="btn-ghost">Read the thesis</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">71%</span>
+        <span class="hero-stat-label">of Earth is ocean</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">0</span>
+        <span class="hero-stat-label">Commercial precedents</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">∞</span>
+        <span class="hero-stat-label">Jurisdictional runway</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THESIS -->
+<section class="thesis" id="thesis">
+  <div class="container">
+    <div class="thesis-grid">
+      <div class="thesis-text">
+        <div class="section-label">The thesis</div>
+        <h2 class="section-title">The last untapped energy frontier is the open ocean.</h2>
+        <p class="section-sub">
+          Every major energy resource on land is spoken for — jurisdictionally,
+          politically, or commercially. The high seas are not. International waters
+          sit under no nation's authority, suffer no permitting delays, and receive
+          more solar irradiance and consistent wind than any land-locked alternative.
+          The only thing missing is the infrastructure to harvest it.
+        </p>
+        <p class="section-sub" style="margin-top:1rem;">
+          FathomX is building that infrastructure — and the first company to
+          successfully transmit offshore international-waters power to a mainland
+          grid will own an energy franchise with no analog in history.
+        </p>
+      </div>
+      <div class="thesis-blocks">
+        <div class="thesis-block">
+          <h4>No landlord. No lease. No expiry.</h4>
+          <p>Under UNCLOS, the high seas belong to no nation. A floating platform
+          registered under a flag state operates in perpetuity without zoning risk,
+          compulsory acquisition, or sovereign resource nationalism.</p>
+        </div>
+        <div class="thesis-block">
+          <h4>The best wind on Earth is unoccupied.</h4>
+          <p>The Southeast Trade Winds and the Arabian Sea monsoon belt deliver
+          7–9 m/s annual average winds with capacity factors of 38–46% — higher
+          than most European offshore wind projects already in operation.</p>
+        </div>
+        <div class="thesis-block">
+          <h4>HVDC cables make the distance irrelevant.</h4>
+          <p>High-voltage direct current submarine cables now transmit power
+          with less than 3.5% loss over 700 km. The North Sea Link has been
+          doing exactly this commercially since 2021.</p>
+        </div>
+        <div class="thesis-block">
+          <h4>AI compute multiplies the revenue model.</h4>
+          <p>A 10 MW GPU cluster co-located on the platform uses stranded power
+          at near-zero marginal cost — generating a second revenue stream in
+          offshore AI inference with no additional cable or land rights required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform" id="platform">
+  <div class="container">
+    <div class="platform-intro">
+      <div class="section-label">The platform</div>
+      <h2 class="section-title">Three energy types. One modular platform.</h2>
+      <p class="section-sub">
+        FathomX platforms are floating semi-submersible structures anchored
+        by suction caissons in 2,000–4,000m water. Each module can be
+        independently added, replaced, or upgraded — no dry-dock required.
+      </p>
+    </div>
+    <div class="platform-cards">
+      <div class="platform-card">
+        <div class="pc-icon">☀️</div>
+        <h3>Solar</h3>
+        <p>Marine-grade bifacial panels mounted on the platform deck, tilted
+        to follow optimal irradiance angles. The Arabian Sea and Eastern Pacific
+        zones receive 2,000–2,350 kWh/m²/yr — among the highest ocean GHI values globally.</p>
+        <div class="pc-stat">2,000–2,350 kWh/m²/yr irradiance</div>
+      </div>
+      <div class="platform-card">
+        <div class="pc-icon">💨</div>
+        <h3>Wind</h3>
+        <p>15 MW floating offshore turbines mounted on the platform's
+        semi-submersible hull. Floating wind is proven at utility scale —
+        Hywind Tampen (88 MW) has operated commercially since 2023.</p>
+        <div class="pc-stat">38–46% capacity factor at target sites</div>
+      </div>
+      <div class="platform-card">
+        <div class="pc-icon">🌊</div>
+        <h3>Wave</h3>
+        <p>Point-absorber wave energy converters integrated into the mooring
+        system capture residual energy from ocean swell. Wave energy is modular
+        and additive — Phase 2 technology once the platform is established.</p>
+        <div class="pc-stat">15–35 kW/m mean annual wave flux</div>
+      </div>
+      <div class="platform-card">
+        <div class="pc-icon">⚡</div>
+        <h3>HVDC Transmission</h3>
+        <p>±525 kV high-voltage direct current submarine cable carries power
+        from platform to mainland grid with &lt;3.5% loss per 500 km. Cable
+        landing rights and a 20-year PPA are negotiated before capital deployment.</p>
+        <div class="pc-stat">&lt;3.5% transmission loss at 500 km</div>
+      </div>
+      <div class="platform-card">
+        <div class="pc-icon">🖥️</div>
+        <h3>Offshore AI Compute</h3>
+        <p>GPU inference clusters co-located on the platform consume stranded power
+        at near-zero marginal cost. Subsea or platform-mounted hardware delivers
+        a second revenue stream — offshore LLM capacity sold back to mainland
+        customers over the same cable.</p>
+        <div class="pc-stat">~$115M/yr revenue per 10 MW GPU cluster</div>
+      </div>
+      <div class="platform-card">
+        <div class="pc-icon">🐟</div>
+        <h3>Offshore Aquafarming</h3>
+        <p>Platform exclusion zones become de facto marine reserves.
+        Open-ocean salmon and cobia cages co-locate with the energy infrastructure,
+        using platform power, desalinated water, and crew logistics to
+        deliver a third revenue stream at sea.</p>
+        <div class="pc-stat">$15–40M/yr incremental at maturity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION TIMELINE -->
+<section class="vision" id="vision">
+  <div class="container">
+    <div class="section-label">The roadmap</div>
+    <h2 class="section-title">40-year infrastructure.<br>Built in four phases.</h2>
+    <p class="section-sub">
+      Every phase de-risks the next. Phase 0 is entirely legal and regulatory groundwork —
+      because the first company to secure a cable landing agreement in this space
+      owns an irreplaceable position.
+    </p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">0</div>
+        <div class="tl-body">
+          <div class="tl-phase">Phase 0 · Years 1–2</div>
+          <h4>Legal foundation + site selection</h4>
+          <p>Incorporate Cayman Islands holdco + Marshall Islands operating subsidiary.
+          Commission met-ocean floating LIDAR buoys at two candidate sites. Initiate
+          preliminary cable landing discussions with Ecuador and India energy ministries.
+          Voluntary BBNJ Environmental Impact Assessment. Engage ISA for non-objection advisory.</p>
+          <div class="tl-tags">
+            <span class="tl-tag">UNCLOS legal opinion</span>
+            <span class="tl-tag">12-month met-ocean data</span>
+            <span class="tl-tag">LOI from offtake nation</span>
+            <span class="tl-tag">Benthic survey</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot amber">1</div>
+        <div class="tl-body">
+          <div class="tl-phase amber">Phase 1 · Years 2–6</div>
+          <h4>50 MW pilot — first power to mainland</h4>
+          <p>50 MW floating wind array, 2–4 turbines, 400–600 km HVDC cable, single offtake
+          counterparty. Target CAPEX: $350–600M. Success criteria: signed 25-year cable landing
+          agreement, signed PPA at ≥$85/MWh, first power delivered to a mainland grid.</p>
+          <div class="tl-tags">
+            <span class="tl-tag">$350–600M CAPEX</span>
+            <span class="tl-tag">25-yr cable landing agreement</span>
+            <span class="tl-tag">First power delivery</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot amber">2</div>
+        <div class="tl-body">
+          <div class="tl-phase amber">Phase 2 · Years 6–12</div>
+          <h4>500 MW scale-up + AI compute + aquafarming</h4>
+          <p>Expand to 500 MW array. Add 10 MW GPU inference cluster using stranded power.
+          Launch offshore salmon/cobia aquafarming operations. Dual-cable redundancy.
+          Explore green hydrogen production for energy storage and export.</p>
+          <div class="tl-tags">
+            <span class="tl-tag">~$4B total CAPEX</span>
+            <span class="tl-tag">$135M/yr energy revenue</span>
+            <span class="tl-tag">$115M/yr compute revenue</span>
+            <span class="tl-tag">$15–40M/yr aquafarming</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot green">3</div>
+        <div class="tl-body">
+          <div class="tl-phase green">Phase 3 · Years 12+</div>
+          <h4>Multi-GW fleet + green hydrogen pivot</h4>
+          <p>Multi-site GW-scale fleet across Eastern Pacific, Arabian Sea, and Atlantic
+          trade-wind zones. Green hydrogen and ammonia synthesis for markets beyond cable reach.
+          Self-sufficient crew and remote operations center. The Southern Ocean — the highest
+          wind resource on Earth — becomes viable at this scale.</p>
+          <div class="tl-tags">
+            <span class="tl-tag">Multi-GW fleet</span>
+            <span class="tl-tag">Green hydrogen / ammonia</span>
+            <span class="tl-tag">Southern Ocean operations</span>
+            <span class="tl-tag">Self-sufficient crew</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECONOMICS -->
+<section class="economics" id="economics">
+  <div class="container">
+    <div class="section-label">Unit economics</div>
+    <h2 class="section-title">Infrastructure returns.<br>Frontier scale.</h2>
+    <p class="section-sub">
+      This is not a venture-returns business — it is a 40-year infrastructure asset
+      with utility-grade cash flows and no incumbent. The appropriate comparison is not a startup;
+      it is a toll road that nobody has built yet.
+    </p>
+    <div class="econ-grid">
+      <div class="econ-card">
+        <h3>500 MW annual revenue</h3>
+        <div class="econ-num">~$290M</div>
+        <div class="econ-sub">Energy $135M + AI compute $115M + aquafarming $40M at Phase 2 maturity</div>
+      </div>
+      <div class="econ-card">
+        <h3>EBITDA margin (Phase 2)</h3>
+        <div class="econ-num">~55%</div>
+        <div class="econ-sub">$87M/yr energy OPEX against blended revenue once compute and aquafarming are operating</div>
+      </div>
+      <div class="econ-card">
+        <h3>Total Phase 2 CAPEX</h3>
+        <div class="econ-num">~$4.2B</div>
+        <div class="econ-sub">500 MW wind + HVDC cable + converter stations + compute cluster + aquafarming</div>
+      </div>
+      <div class="econ-card">
+        <h3>Project equity IRR</h3>
+        <div class="econ-num">8–12%</div>
+        <div class="econ-sub">At $80–100/MWh PPA. Typical for large infrastructure; financed with pension and sovereign wealth capital, not VC</div>
+      </div>
+    </div>
+    <p class="econ-disclaimer">* All figures are indicative. Based on 2024–2025 engineering estimates, ERA5 met-ocean reanalysis, and current HVDC market pricing. Actual costs are highly project-specific.</p>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-label">Why now</div>
+    <h2 class="section-title">Five forces that make this the right decade.</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h4>Floating wind is proven</h4>
+        <p>Hywind Tampen (88 MW) has operated commercially since 2023. The technology
+        is ready. The supply chain is scaling. The window to be first in international
+        waters is open — and closing.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h4>HVDC has reached commercial scale</h4>
+        <p>The North Sea Link (720 km, 1,400 MW) has been operating since 2021.
+        The Xlinks Morocco-UK project (3,800 km) is in financing. Submarine HVDC
+        is no longer experimental — it is infrastructure finance.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h4>AI compute demand is insatiable</h4>
+        <p>Global data center power demand is projected to double by 2030.
+        Power is the binding constraint on AI scaling. A platform that generates
+        cheap power in international waters can run GPUs at costs no land-based
+        operator can match.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <h4>Energy-importing nations are desperate for supply</h4>
+        <p>India adds 150–200 TWh of demand annually. Island nations pay
+        $0.25–0.50/kWh for diesel generation. An offshore clean energy
+        supplier offering $85–100/MWh PPAs solves a real and urgent problem.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <h4>The BBNJ Treaty creates a governance framework</h4>
+        <p>The High Seas Treaty (adopted March 2023) will formalize environmental
+        standards for activities in international waters — creating regulatory
+        clarity for the first time. Early movers who conduct voluntary EIAs now
+        will be positioned when the framework arrives.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06</div>
+        <h4>No incumbent exists</h4>
+        <p>Every other energy infrastructure category on Earth has entrenched
+        operators. The open ocean does not. The first company to land a cable
+        from international waters to a mainland grid owns a position that
+        cannot be replicated.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join" id="join">
+  <div class="container">
+    <div class="join-wrap">
+      <div class="section-label">Join the mission</div>
+      <h2 class="section-title">We're assembling the founding team.</h2>
+      <p class="section-sub">
+        FathomX is pre-incorporation. We are looking for the four people without whom
+        this does not happen: an offshore energy engineer, a maritime/UNCLOS lawyer,
+        a project finance specialist, and a government relations lead with relationships
+        in a target offtake nation. If you are one of them — or if you know you should be
+        involved and aren't sure how — tell us.
+      </p>
+      <div class="join-form">
+        <form id="joinForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First name *</label>
+              <input type="text" name="first_name" placeholder="Ada" required />
+            </div>
+            <div class="form-group">
+              <label>Last name *</label>
+              <input type="text" name="last_name" placeholder="Lovelace" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="ada@example.com" required />
+          </div>
+          <div class="form-group">
+            <label>LinkedIn or GitHub</label>
+            <input type="text" name="profile_url" placeholder="linkedin.com/in/yourprofile" />
+          </div>
+          <div class="form-group">
+            <label>Role / expertise *</label>
+            <select name="role" required>
+              <option value="" disabled selected>Select your background</option>
+              <option value="offshore_engineering">Offshore / Marine Engineering</option>
+              <option value="maritime_law">Maritime / International Law (UNCLOS)</option>
+              <option value="project_finance">Infrastructure / Project Finance</option>
+              <option value="government_relations">Government Relations / Energy Policy</option>
+              <option value="ai_compute">AI / Data Center Infrastructure</option>
+              <option value="aquafarming">Aquafarming / Marine Biology</option>
+              <option value="operations">Offshore Operations / Crew Management</option>
+              <option value="founder_generalist">Founder / Operator (Generalist)</option>
+              <option value="investor">Investor / Capital Allocator</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Location / timezone</label>
+            <input type="text" name="location" placeholder="San Francisco, UTC-8" />
+          </div>
+          <div class="form-group">
+            <label>Why this, why now — in one or two sentences *</label>
+            <textarea name="why" placeholder="What draws you to this problem? What do you bring?" required></textarea>
+          </div>
+          <label class="form-consent">
+            <input type="checkbox" name="consent" value="true" required />
+            <span>I agree to be contacted by FathomX about founding team and collaboration opportunities.</span>
+          </label>
+          <button type="submit" class="form-submit" id="joinSubmit">Send application →</button>
+        </form>
+        <div class="form-success" id="joinSuccess">
+          <div class="check">✓</div>
+          <h3>We'll be in touch.</h3>
+          <p>Your application has been received. The founding team reviews every submission personally.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Fathom<span>X</span></div>
+  <p class="footer-sub">Offshore renewable energy · AI compute · Aquafarming · International waters</p>
+</footer>
+
+<script>
+// ── HERO PARTICLE CANVAS ──
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const NUM = 55;
+  for (let i = 0; i < NUM; i++) {
+    particles.push({
+      x: Math.random() * 1200,
+      y: Math.random() * 800,
+      r: Math.random() * 1.5 + 0.3,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.5 + 0.1
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,200,224,${p.alpha})`;
+      ctx.fill();
+    });
+    // draw connecting lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,200,224,${0.06 * (1 - dist/120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── JOIN FORM ──
+(function() {
+  const form = document.getElementById('joinForm');
+  const btn = document.getElementById('joinSubmit');
+  const success = document.getElementById('joinSuccess');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch('/api/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.success) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send application →';
+        alert(json.message || 'Something went wrong. Please try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Send application →';
+      alert('Network error. Please try again.');
+    }
+  });
+})();
+</script>
+</body>
+</html>
