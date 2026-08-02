@@ -14,314 +14,227 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --deep:   #060d14;
-      --navy:   #0a1520;
-      --navy2:  #0e1d2a;
-      --navy3:  #132435;
-      --muted:  #5a7080;
-      --line:   #162535;
-      --amber:  #D4974A;
-      --amber2: #c08030;
-      --gold:   #f0c060;
-      --white:  #ffffff;
-      --warm:   rgba(212,151,74,0.08);
-      --max:    1080px;
-      --r:      10px;
+      --deep:  #060d14;
+      --navy:  #0a1520;
+      --navy2: #0e1d2a;
+      --navy3: #132435;
+      --muted: #5a7080;
+      --line:  #162535;
+      --amber: #D4974A;
+      --gold:  #f0c060;
+      --white: #ffffff;
+      --max:   1080px;
+      --r:     10px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--deep);
-      color: var(--white);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--deep); color: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, serif; }
-    img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
 
-    /* ── REVEAL ── */
-    [data-reveal] {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
-    }
-    [data-reveal].visible { opacity: 1; transform: translateY(0); }
-    [data-reveal][data-d="1"] { transition-delay: 0.08s; }
-    [data-reveal][data-d="2"] { transition-delay: 0.18s; }
-    [data-reveal][data-d="3"] { transition-delay: 0.3s; }
+    [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    [data-reveal].visible { opacity: 1; transform: none; }
+    [data-reveal][data-d="1"] { transition-delay: 0.1s; }
+    [data-reveal][data-d="2"] { transition-delay: 0.22s; }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 3rem; height: 62px;
-      background: rgba(6,13,20,0);
-      backdrop-filter: blur(0px);
+      padding: 0 2.5rem; height: 60px;
+      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
       border-bottom: 1px solid transparent;
-      transition: background 0.5s, backdrop-filter 0.5s, border-color 0.5s;
     }
-    nav.up {
-      background: rgba(6,13,20,0.88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom-color: rgba(255,255,255,0.04);
-    }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em;
-      color: var(--white);
-    }
+    nav.up { background: rgba(6,13,20,0.9); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom-color: rgba(255,255,255,0.05); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; }
     .nav-logo em { font-style: italic; color: var(--amber); }
-    .nav-cta {
-      background: var(--amber); color: var(--deep);
-      padding: 0.5rem 1.3rem; border-radius: 6px;
-      font-weight: 700; font-size: 0.82rem; letter-spacing: 0.01em;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .nav-cta:hover { background: var(--gold); transform: translateY(-1px); }
+    .nav-cta { background: var(--amber); color: var(--deep); padding: 0.48rem 1.2rem; border-radius: 6px; font-weight: 700; font-size: 0.82rem; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--gold); }
 
-    /* ── HERO ── */
-    .hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: flex-end;
-      overflow: hidden;
-      padding: 0 3rem 6rem;
-    }
-    .hero-ocean {
-      position: absolute; inset: 0; z-index: 0;
+    /* ── VIDEO HERO ── */
+    .v-hero { position: relative; height: 100vh; min-height: 560px; overflow: hidden; background: #000; }
+    .v-hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+    .v-hero-grad {
+      position: absolute; inset: 0; z-index: 1;
       background:
-        radial-gradient(ellipse 120% 50% at 50% 105%, rgba(0,55,100,0.7) 0%, rgba(0,30,60,0.3) 45%, transparent 70%),
-        radial-gradient(ellipse 80% 30% at 15% 80%, rgba(212,151,74,0.07) 0%, transparent 60%),
-        linear-gradient(to bottom, #060d14 0%, #070f18 60%, #091420 100%);
+        linear-gradient(to top, rgba(6,13,20,0.92) 0%, rgba(6,13,20,0.4) 40%, rgba(6,13,20,0.1) 100%),
+        linear-gradient(to right, rgba(6,13,20,0.5) 0%, transparent 60%);
     }
-    .hero-stars {
-      position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    }
-    .hero-horizon {
+    .v-hero-body {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,151,74,0.35) 50%, transparent);
+      padding: 0 3rem 5rem;
     }
-    .hero-body {
-      position: relative; z-index: 3;
-      max-width: var(--max);
-      width: 100%;
+    .v-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); opacity: 0.85; margin-bottom: 1.1rem; display: flex; align-items: center; gap: 10px; }
+    .v-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--amber); }
+    .v-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 900; line-height: 1.02; letter-spacing: -0.03em;
+      max-width: 780px; margin-bottom: 1.4rem;
     }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--amber);
-      margin-bottom: 1.4rem; opacity: 0.85;
-    }
-    .hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--amber); }
-    h1 {
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 900; line-height: 1.02;
-      letter-spacing: -0.03em; color: var(--white);
-      max-width: 780px; margin-bottom: 1.5rem;
-    }
-    h1 em { font-style: italic; color: var(--amber); }
-    .hero-sub {
-      font-size: 1.05rem; color: rgba(255,255,255,0.5);
-      max-width: 460px; line-height: 1.8;
-      margin-bottom: 2.75rem;
-    }
-    .hero-btn {
-      display: inline-block;
-      background: var(--amber); color: var(--deep);
-      padding: 0.9rem 2.25rem; border-radius: 8px;
-      font-weight: 700; font-size: 0.95rem;
-      letter-spacing: 0.01em;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .hero-btn:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(212,151,74,0.25); }
-    .hero-stats {
-      display: flex; gap: 3.5rem; margin-top: 4.5rem;
-      padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.07);
-      flex-wrap: wrap;
-    }
-    .hstat .n {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.1rem; font-weight: 700; color: var(--white);
-      line-height: 1; letter-spacing: -0.02em;
-    }
-    .hstat .n em { color: var(--amber); font-style: normal; }
-    .hstat .l { font-size: 0.71rem; color: rgba(255,255,255,0.32); margin-top: 5px; letter-spacing: 0.04em; }
+    .v-hero h1 em { font-style: italic; color: var(--amber); }
+    .v-hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 440px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .v-hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-a { background: var(--amber); color: var(--deep); padding: 0.85rem 2rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: background 0.2s, transform 0.15s; }
+    .btn-a:hover { background: var(--gold); transform: translateY(-1px); }
+    .btn-b { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); padding: 0.85rem 2rem; border-radius: 8px; font-weight: 500; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.12); transition: all 0.2s; }
+    .btn-b:hover { background: rgba(255,255,255,0.13); color: var(--white); }
 
-    /* ── FACT ── */
-    .fact { background: var(--navy); padding: 7rem 3rem; }
-    .fact-inner { max-width: 780px; margin: 0 auto; }
-    .fact-inner blockquote {
+    .v-hero-stats {
+      display: flex; gap: 3.5rem; margin-top: 4rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap;
+    }
+    .vstat .n { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; line-height: 1; }
+    .vstat .n em { font-style: normal; color: var(--amber); }
+    .vstat .l { font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 4px; letter-spacing: 0.04em; }
+
+    /* ── STITCH VIDEO ── */
+    .stitch { position: relative; background: #000; overflow: hidden; }
+    .stitch-wrap { position: relative; width: 100%; aspect-ratio: 16/9; min-height: 380px; }
+    .sv {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; transition: opacity 0.8s ease;
+    }
+    .sv:not(:first-child) { opacity: 0; }
+    .stitch-grad {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: linear-gradient(to top, rgba(6,13,20,0.85) 0%, rgba(6,13,20,0.2) 50%, transparent 100%);
+    }
+    .stitch-pills {
+      position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 4;
+    }
+    .sp {
+      height: 3px; border-radius: 2px;
+      background: rgba(255,255,255,0.2); overflow: hidden; position: relative;
+    }
+    .sp::after { content: ''; position: absolute; inset: 0; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: none; }
+    .sp.active::after { animation: pfill var(--dur, 9s) linear forwards; }
+    .sp.done::after { transform: scaleX(1); }
+    @keyframes pfill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    .stitch-cap {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      padding: 3rem 3rem 2.5rem;
+    }
+    .sc-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(212,151,74,0.7); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 7px; }
+    .sc-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--amber); animation: blink 2.2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .sc-h { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.18; transition: opacity 0.3s; }
+    .sc-sub { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-top: 0.35rem; transition: opacity 0.3s; }
+
+    /* ── PULL QUOTE ── */
+    .pq { background: var(--navy); padding: 6rem 3rem; text-align: center; }
+    .pq blockquote {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 2.8vw, 2.35rem);
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
       font-weight: 400; font-style: italic;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.55; letter-spacing: -0.01em;
-      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.82); max-width: 820px;
+      margin: 0 auto 1.25rem; line-height: 1.5; letter-spacing: -0.01em;
     }
-    .fact-inner blockquote::before {
-      content: '\201C';
-      font-size: 4.5rem; color: var(--amber); line-height: 0;
-      vertical-align: -1.5rem; margin-right: 0.1em; opacity: 0.5;
-    }
-    .fact-inner blockquote strong { font-weight: 700; font-style: normal; color: var(--white); }
-    .fact-rule { width: 40px; height: 1px; background: var(--amber); opacity: 0.5; margin-bottom: 2rem; }
-    .fact-follow {
-      font-size: 1rem; color: rgba(255,255,255,0.42); line-height: 1.8;
-    }
-    .fact-follow strong { color: rgba(255,255,255,0.65); font-weight: 600; }
+    .pq blockquote::before { content: '\201C'; font-size: 4rem; color: var(--amber); line-height: 0; vertical-align: -1.4rem; margin-right: 0.12em; opacity: 0.55; }
+    .pq blockquote strong { font-weight: 700; font-style: normal; color: var(--white); }
+    .pq cite { font-size: 0.75rem; color: rgba(212,151,74,0.4); font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* ── HOW ── */
-    .how { background: var(--deep); padding: 7rem 3rem; }
-    .how-inner { max-width: var(--max); margin: 0 auto; }
-    .section-eyebrow {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: rgba(212,151,74,0.6); margin-bottom: 0.75rem;
+    /* ── SINGLE FULL VIDEO ── */
+    .full-vid { position: relative; background: #000; overflow: hidden; }
+    .full-vid video { width: 100%; display: block; max-height: 70vh; object-fit: cover; opacity: 0.8; }
+    .full-vid-cap {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 4rem 3rem 2.5rem;
+      background: linear-gradient(to top, rgba(6,13,20,0.9) 0%, transparent 100%);
     }
-    h2 {
-      font-size: clamp(1.9rem, 3.5vw, 2.9rem);
-      font-weight: 700; letter-spacing: -0.025em; line-height: 1.15;
-      margin-bottom: 1.25rem;
-    }
-    .how-lead { font-size: 1.05rem; color: rgba(255,255,255,0.48); line-height: 1.8; max-width: 520px; margin-bottom: 4.5rem; }
+    .full-vid-cap .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(212,151,74,0.65); margin-bottom: 0.5rem; }
+    .full-vid-cap h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.2; }
+    .full-vid-cap p { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-top: 0.4rem; max-width: 500px; }
 
-    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-radius: var(--r); overflow: hidden; margin-bottom: 1px; }
-    .hw {
-      background: var(--navy); padding: 2.25rem 2rem;
-      transition: background 0.2s;
-    }
-    .hw:hover { background: var(--navy2); }
-    .hw-n {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem; font-weight: 900; color: rgba(212,151,74,0.15);
-      line-height: 1; margin-bottom: 1.25rem; letter-spacing: -0.03em;
-    }
-    .hw h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.65rem; letter-spacing: -0.02em; font-family: 'Inter', sans-serif; }
-    .hw p { font-size: 0.9rem; color: rgba(255,255,255,0.46); line-height: 1.7; }
+    /* ── GRID SECTION (3 facts) ── */
+    .facts { background: var(--deep); padding: 6rem 3rem; }
+    .facts-inner { max-width: var(--max); margin: 0 auto; }
+    .facts h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 3.5rem; max-width: 520px; line-height: 1.2; }
+    .facts h2 em { font-style: italic; color: var(--amber); }
+    .facts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-radius: var(--r); overflow: hidden; }
+    .fc { background: var(--navy); padding: 2.25rem 2rem; transition: background 0.2s; }
+    .fc:hover { background: var(--navy2); }
+    .fc-n { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: rgba(212,151,74,0.14); line-height: 1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
+    .fc h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.015em; }
+    .fc p { font-size: 0.88rem; color: rgba(255,255,255,0.44); line-height: 1.72; }
 
-    .how-arrow {
-      text-align: center; padding: 1.25rem 0;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(212,151,74,0.4);
-      display: flex; align-items: center; gap: 1rem;
+    /* ── PHOTO ROW ── */
+    .photo-row { display: grid; grid-template-columns: 1fr 1fr; height: 480px; }
+    .pr-cell { position: relative; overflow: hidden; background: var(--navy); }
+    .pr-cell img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: transform 0.6s ease, opacity 0.4s; display: block; }
+    .pr-cell:hover img { transform: scale(1.04); opacity: 0.85; }
+    .pr-cap {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem 2rem 1.5rem;
+      background: linear-gradient(to top, rgba(6,13,20,0.88) 0%, transparent 100%);
     }
-    .how-arrow::before, .how-arrow::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-
-    .how-grid.out .hw h3 { color: var(--amber); }
-
-    /* ── WHY ── */
-    .why { background: var(--navy); padding: 7rem 3rem; }
-    .why-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-    .why-left h2 { margin-bottom: 1.5rem; }
-    .why-left h2 em { font-style: italic; color: var(--amber); }
-    .why-left p { font-size: 1.02rem; color: rgba(255,255,255,0.5); line-height: 1.82; margin-bottom: 1.1rem; }
-    .why-right { display: flex; flex-direction: column; }
-    .wp {
-      padding: 1.85rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .wp:first-child { padding-top: 0; }
-    .wp:last-child { border-bottom: none; padding-bottom: 0; }
-    .wp h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-weight: 700; font-style: italic;
-      margin-bottom: 0.55rem; line-height: 1.25; color: var(--white);
-    }
-    .wp p { font-size: 0.88rem; color: rgba(255,255,255,0.44); line-height: 1.75; }
+    .pr-cap h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .pr-cap p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
 
     /* ── JOIN ── */
-    .join { background: var(--deep); padding: 7rem 3rem 8rem; }
+    .join { background: var(--navy); padding: 7rem 3rem 8rem; }
     .join-inner { max-width: 640px; margin: 0 auto; }
-    .join-hd { margin-bottom: 3.5rem; }
-    .join-hd h2 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 1.1rem; }
+    .join-hd { margin-bottom: 3rem; }
+    .join-hd h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; }
     .join-hd h2 em { font-style: italic; color: var(--amber); }
-    .join-hd p { font-size: 1.02rem; color: rgba(255,255,255,0.46); line-height: 1.8; max-width: 480px; }
+    .join-hd p { font-size: 1rem; color: rgba(255,255,255,0.46); line-height: 1.8; }
 
-    .join-form-wrap {
-      background: var(--navy); border: 1px solid var(--line);
-      border-radius: 14px; padding: 2.5rem;
-    }
+    .join-form-wrap { background: var(--navy2); border: 1px solid var(--line); border-radius: 14px; padding: 2.5rem; }
     .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .fg { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.2rem; }
-    .fg label { font-size: 0.71rem; font-weight: 700; color: rgba(255,255,255,0.42); text-transform: uppercase; letter-spacing: 0.07em; }
+    .fg label { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.07em; }
     .fg input, .fg select, .fg textarea {
       background: var(--navy3); border: 1px solid var(--line);
       border-radius: 8px; padding: 0.75rem 1rem;
-      color: var(--white); font-size: 0.95rem;
-      font-family: 'Inter', sans-serif;
+      color: var(--white); font-size: 0.95rem; font-family: 'Inter', sans-serif;
       outline: none; transition: border-color 0.2s, box-shadow 0.2s;
       -webkit-appearance: none; appearance: none;
     }
     .fg select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7080' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 1rem center;
-      padding-right: 2.5rem; cursor: pointer;
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer;
     }
-    .fg input::placeholder, .fg textarea::placeholder { color: rgba(90,112,128,0.7); }
-    .fg input:focus, .fg select:focus, .fg textarea:focus {
-      border-color: rgba(212,151,74,0.45);
-      box-shadow: 0 0 0 3px rgba(212,151,74,0.07);
-    }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(90,112,128,0.6); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: rgba(212,151,74,0.45); box-shadow: 0 0 0 3px rgba(212,151,74,0.07); }
     .fg select option { background: var(--navy3); }
-    .fg textarea { resize: vertical; min-height: 90px; }
-
-    .f-consent {
-      display: flex; align-items: flex-start; gap: 0.75rem;
-      margin-bottom: 1.5rem; cursor: pointer;
-    }
+    .fg textarea { resize: vertical; min-height: 88px; }
+    .f-consent { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.5rem; cursor: pointer; }
     .f-consent input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--amber); width: 15px; height: 15px; }
-    .f-consent span { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
-
-    .f-submit {
-      width: 100%; background: var(--amber); color: var(--deep);
-      border: none; border-radius: 8px; padding: 1.05rem;
-      font-size: 0.95rem; font-weight: 700; cursor: pointer;
-      font-family: 'Inter', sans-serif; letter-spacing: 0.01em;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .f-submit:hover { background: var(--gold); transform: translateY(-1px); box-shadow: 0 10px 36px rgba(212,151,74,0.22); }
+    .f-consent span { font-size: 0.82rem; color: rgba(255,255,255,0.32); line-height: 1.6; }
+    .f-submit { width: 100%; background: var(--amber); color: var(--deep); border: none; border-radius: 8px; padding: 1rem; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+    .f-submit:hover { background: var(--gold); transform: translateY(-1px); box-shadow: 0 10px 32px rgba(212,151,74,0.2); }
     .f-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
-
     .f-success { display: none; text-align: center; padding: 2.5rem 0; }
-    .f-success .check {
-      width: 54px; height: 54px; border-radius: 50%;
-      background: rgba(212,151,74,0.08); border: 1.5px solid rgba(212,151,74,0.4);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem; margin: 0 auto 1.25rem; color: var(--amber);
-    }
-    .f-success h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.02em;
-    }
-    .f-success p { color: rgba(255,255,255,0.42); font-size: 0.92rem; line-height: 1.7; }
+    .f-success .check { width: 52px; height: 52px; border-radius: 50%; background: rgba(212,151,74,0.08); border: 1.5px solid rgba(212,151,74,0.4); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin: 0 auto 1.25rem; color: var(--amber); }
+    .f-success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .f-success p { color: rgba(255,255,255,0.42); font-size: 0.9rem; line-height: 1.7; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--navy); border-top: 1px solid var(--line);
-      padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; font-weight: 700; color: var(--white);
-    }
+    footer { background: var(--deep); border-top: 1px solid var(--line); padding: 2.25rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; }
     .footer-logo em { font-style: italic; color: var(--amber); }
-    .footer-sub { font-size: 0.78rem; color: var(--muted); }
+    .footer-sub { font-size: 0.75rem; color: var(--muted); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
-      .why-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .how-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 2.5rem; }
+      .facts-grid { grid-template-columns: 1fr 1fr; }
+      .photo-row { grid-template-columns: 1fr; height: auto; }
+      .pr-cell { height: 280px; }
     }
     @media (max-width: 640px) {
       nav { padding: 0 1.5rem; }
-      .hero { padding: 0 1.5rem 5rem; }
-      .fact, .how, .why, .join { padding: 5rem 1.5rem; }
-      .frow { grid-template-columns: 1fr; }
+      .v-hero-body { padding: 0 1.5rem 4rem; }
+      .stitch-cap { padding: 2rem 1.5rem 1.75rem; }
+      .pq { padding: 4.5rem 1.5rem; }
+      .full-vid-cap { padding: 2.5rem 1.5rem 1.75rem; }
+      .facts { padding: 5rem 1.5rem; }
+      .facts-grid { grid-template-columns: 1fr; }
+      .join { padding: 5rem 1.5rem 6rem; }
       .join-form-wrap { padding: 1.75rem; }
+      .frow { grid-template-columns: 1fr; }
       footer { padding: 2rem 1.5rem; }
+      .v-hero-stats { gap: 2rem; }
     }
   </style>
 </head>
@@ -332,178 +245,150 @@
   <a href="#join" class="nav-cta">Get involved</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-ocean"></div>
-  <canvas class="hero-stars" id="stars"></canvas>
-  <div class="hero-horizon"></div>
-  <div class="hero-body">
-    <div class="hero-eyebrow">International waters</div>
-    <h1>The ocean has been<br>generating power<br>for <em>four billion years.</em></h1>
-    <p class="hero-sub">
-      Nobody has ever harvested it.<br>
-      We're going to change that.
-    </p>
-    <a href="#join" class="hero-btn">Join us</a>
-    <div class="hero-stats">
-      <div class="hstat">
-        <div class="n"><em>71</em>%</div>
-        <div class="l">of Earth is ocean</div>
+<!-- VIDEO HERO -->
+<section class="v-hero">
+  <video autoplay muted playsinline loop preload="auto" poster="/assets/images/sunrise-poster.jpg">
+    <source src="/assets/videos/sunrise-aerial.mp4" type="video/mp4" />
+  </video>
+  <div class="v-hero-grad"></div>
+  <div class="v-hero-body">
+    <div class="v-eyebrow">International waters</div>
+    <h1>The ocean has been<br>generating power for<br><em>four billion years.</em></h1>
+    <p class="v-hero-sub">Nobody has harvested it.<br>We're going to.</p>
+    <div class="v-hero-btns">
+      <a href="#join" class="btn-a">Join the mission</a>
+      <a href="#stitch" class="btn-b">See the vision</a>
+    </div>
+    <div class="v-hero-stats">
+      <div class="vstat"><div class="n"><em>71</em>%</div><div class="l">of Earth is ocean</div></div>
+      <div class="vstat"><div class="n"><em>0</em></div><div class="l">commercial platforms in international waters</div></div>
+      <div class="vstat"><div class="n"><em>∞</em></div><div class="l">no landlord, no permit, no expiry</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STITCH VIDEO -->
+<section class="stitch" id="stitch">
+  <div class="stitch-wrap">
+    <video class="sv" id="sv0" muted playsinline preload="auto">
+      <source src="/assets/videos/sailboat-solar.mp4" type="video/mp4" />
+    </video>
+    <video class="sv" id="sv1" muted playsinline preload="auto">
+      <source src="/assets/videos/camper-van-solar.mp4" type="video/mp4" />
+    </video>
+    <video class="sv" id="sv2" muted playsinline preload="auto">
+      <source src="/assets/videos/solar-loop.mp4" type="video/mp4" />
+    </video>
+    <div class="stitch-grad"></div>
+    <div class="stitch-pills" id="sPills">
+      <div class="sp active" style="width:60px;--dur:9s"></div>
+      <div class="sp" style="width:60px;--dur:9s"></div>
+      <div class="sp" style="width:60px;--dur:9s"></div>
+    </div>
+    <div class="stitch-cap">
+      <div class="sc-tag" id="sTag">Open water</div>
+      <h2 class="sc-h" id="sTitle">Solar already goes<br>where ships go.</h2>
+      <p class="sc-sub" id="sSub">If it powers a sailboat crossing the Pacific, it can power a platform anchored there.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pq">
+  <blockquote data-reveal>
+    The North Sea, the Persian Gulf, the Bass Strait —
+    <strong>every offshore energy project in history has been built inside someone's waters.</strong>
+    The open ocean has never been used to generate energy at scale.
+    Not because it can't be. Because nobody has gone there yet.
+  </blockquote>
+  <cite data-reveal data-d="1">13°N · 142°E · 380 nautical miles from the nearest coast</cite>
+</section>
+
+<!-- FULL VIDEO -->
+<section class="full-vid">
+  <video autoplay muted playsinline loop preload="auto">
+    <source src="/assets/videos/panels-sun.mp4" type="video/mp4" />
+  </video>
+  <div class="full-vid-cap">
+    <div class="eyebrow">The platform</div>
+    <h2>Solar. Wind. Wave.<br>One floating structure.</h2>
+    <p>Modular, permanent, anchored beyond any jurisdiction.</p>
+  </div>
+</section>
+
+<!-- 3 FACTS -->
+<section class="facts" id="why">
+  <div class="facts-inner">
+    <h2 data-reveal>Why this.<br><em>Why now.</em></h2>
+    <div class="facts-grid">
+      <div class="fc" data-reveal>
+        <div class="fc-n">01</div>
+        <h3>Every piece already exists.</h3>
+        <p>Floating turbines operate commercially off Norway. Submarine cables carry a gigawatt 720 kilometers across the North Sea. Offshore structures survive Category 5 hurricanes. The components are proven. Nobody has assembled them beyond the 200-mile line.</p>
       </div>
-      <div class="hstat">
-        <div class="n"><em>0</em></div>
-        <div class="l">commercial energy platforms in international waters</div>
+      <div class="fc" data-reveal data-d="1">
+        <div class="fc-n">02</div>
+        <h3>Half the world pays too much for power.</h3>
+        <p>Island nations run diesel generators at $0.40/kWh. Fast-growing economies import energy from neighbors they don't fully trust. A 25-year supply agreement with no geopolitical strings changes the calculation permanently.</p>
       </div>
-      <div class="hstat">
-        <div class="n"><em>∞</em></div>
-        <div class="l">no permit required</div>
+      <div class="fc" data-reveal data-d="2">
+        <div class="fc-n">03</div>
+        <h3>The ocean is the moat.</h3>
+        <p>A platform in international waters can't be zoned out, eminent-domained, or have its license pulled after an election. The competitive position is geographic. The ocean isn't going anywhere. The asset life is forty years.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FACT -->
-<section class="fact">
-  <div class="fact-inner">
-    <blockquote data-reveal>
-      Seventy-one percent of this planet is ocean.
-      <strong>It belongs to no nation.</strong>
-      It receives more sunlight than any desert.
-      Its winds blow day and night without stopping.
-      Its waves carry energy that has traveled three thousand miles undisturbed.
-    </blockquote>
-    <div class="fact-rule" data-reveal></div>
-    <p class="fact-follow" data-reveal>
-      The North Sea, the Persian Gulf, the Bass Strait —
-      <strong>every offshore energy project in history has been built inside someone's waters,
-      under someone's rules, revocable by someone's government.</strong>
-      The open ocean has none of that.
-      It has never been used to generate energy at commercial scale.
-      Not because it can't be. Because nobody has gone there yet.
-    </p>
+<!-- PHOTO ROW -->
+<div class="photo-row">
+  <div class="pr-cell">
+    <img src="/assets/images/solar-aerial-view.jpg" alt="Aerial solar" loading="lazy" />
+    <div class="pr-cap">
+      <h3>Energy, delivered.</h3>
+      <p>Submarine cable from platform to national grid. Same technology that links the UK to Norway.</p>
+    </div>
   </div>
-</section>
-
-<!-- HOW -->
-<section class="how" id="how">
-  <div class="how-inner">
-    <div data-reveal>
-      <div class="section-eyebrow">The platform</div>
-      <h2>Collect. Convert. Deliver.</h2>
-      <p class="how-lead">
-        A floating platform anchored in international waters. Three energy sources. One cable back to the mainland.
-      </p>
-    </div>
-
-    <div class="how-grid" data-reveal>
-      <div class="hw">
-        <div class="hw-n">01</div>
-        <h3>Solar</h3>
-        <p>The open ocean sits beneath some of the highest solar irradiance on the planet. No terrain blocking it. No one to ask permission. The sun shows up whether you have permits or not.</p>
-      </div>
-      <div class="hw">
-        <div class="hw-n">02</div>
-        <h3>Wind</h3>
-        <p>The trade winds that guided sailors across oceans for five hundred years blow 24 hours a day. Floating turbines — proven at commercial scale since 2017 — turn them into electricity far beyond any coast.</p>
-      </div>
-      <div class="hw">
-        <div class="hw-n">03</div>
-        <h3>Wave</h3>
-        <p>Swell that crossed three thousand miles of open ocean arrives at the hull with energy still in it. Wave converters built into the mooring capture what doesn't stop when the sun sets.</p>
-      </div>
-    </div>
-
-    <div class="how-arrow" data-reveal>sent back to civilization via submarine cable</div>
-
-    <div class="how-grid out" data-reveal>
-      <div class="hw">
-        <div class="hw-n">A</div>
-        <h3>Power to the mainland</h3>
-        <p>The same submarine cable technology that already links the UK to Norway carries electricity from the platform to a national grid. We use it to cross a different kind of border.</p>
-      </div>
-      <div class="hw">
-        <div class="hw-n">B</div>
-        <h3>Compute at sea</h3>
-        <p>The cable carries compute inbound. Servers running on clean, cheap, unrestricted offshore power — available to anyone, answerable to no one. A data center with no landlord and no government looking in.</p>
-      </div>
-      <div class="hw">
-        <div class="hw-n">C</div>
-        <h3>Food from open water</h3>
-        <p>The exclusion zone around the platform becomes a marine reserve. Offshore aquaculture — running on platform power, staffed by the crew — adds a third revenue stream alongside energy and compute.</p>
+  <div class="pr-cell" style="background: var(--navy3)">
+    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:3rem;">
+      <div>
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(212,151,74,0.6);margin-bottom:1rem">Also on the platform</div>
+        <div style="display:flex;flex-direction:column;gap:1.25rem">
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.3rem">Compute at sea</div>
+            <div style="font-size:0.85rem;color:rgba(255,255,255,0.42);line-height:1.6">Servers running on clean, cheap offshore power. No lease. No jurisdiction.</div>
+          </div>
+          <div style="height:1px;background:var(--line)"></div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.3rem">Food from open water</div>
+            <div style="font-size:0.85rem;color:rgba(255,255,255,0.42);line-height:1.6">Offshore aquaculture in the platform's exclusion zone. A third revenue stream.</div>
+          </div>
+          <div style="height:1px;background:var(--line)"></div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.3rem">Self-sufficient crew</div>
+            <div style="font-size:0.85rem;color:rgba(255,255,255,0.42);line-height:1.6">Desalination, aquafarming, solar. Eventually no supply ship needed.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- WHY -->
-<section class="why" id="why">
-  <div class="why-inner">
-    <div class="why-left" data-reveal>
-      <div class="section-eyebrow">Why now</div>
-      <h2>The window is open.<br><em>Not for long.</em></h2>
-      <p>
-        The technology to do this has existed for about five years.
-        The legal framework governing international waters is stable enough to operate under.
-        The demand for clean, independent energy from nations that import it is growing every year.
-      </p>
-      <p>
-        There is no incumbent. There is no one to displace.
-        The ocean is not a crowded market — it is an empty one.
-        The first company to land a cable from international waters to a mainland grid
-        owns that position for the life of the asset.
-        That asset lasts forty years.
-      </p>
-    </div>
-    <div class="why-right" data-reveal data-d="2">
-      <div class="wp">
-        <h4>Every piece already exists.</h4>
-        <p>Floating turbines operate commercially off Scotland and Norway. Submarine cables carry a gigawatt across 720 kilometers in the North Sea. Offshore structures have survived Category 5 hurricanes for decades in the Gulf of Mexico. The components are proven. Nobody has assembled them beyond the 200-mile line.</p>
-      </div>
-      <div class="wp">
-        <h4>Half the world is paying too much for power.</h4>
-        <p>Island nations run generators at $0.40 per kilowatt-hour — four times what most Americans pay. Fast-growing economies import energy from neighbors they don't fully trust. A supply agreement with no geopolitical strings, 25 years at a fixed price, changes the calculation permanently.</p>
-      </div>
-      <div class="wp">
-        <h4>The ocean is the moat.</h4>
-        <p>A platform in international waters can't be zoned out, eminent-domained, or have its license pulled after an election. Nobody can undercut you on location. The competitive position is geographic — and the ocean isn't going anywhere.</p>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- JOIN -->
 <section class="join" id="join">
   <div class="join-inner">
     <div class="join-hd" data-reveal>
       <h2>We're not hiring.<br><em>We're founding.</em></h2>
-      <p>
-        FathomX doesn't exist yet as a company.
-        We're looking for the people who see what we see —
-        an offshore energy engineer, a maritime lawyer, a project finance specialist,
-        someone with relationships in a government that buys power.
-        If that's you, tell us.
-      </p>
+      <p>FathomX doesn't exist yet as a company. We're looking for the people who see what we see — an offshore energy engineer, a maritime lawyer, a project finance specialist, someone with relationships in a government that buys power. If that's you, tell us.</p>
     </div>
     <div class="join-form-wrap" data-reveal data-d="1">
       <form id="jForm">
         <div class="frow">
-          <div class="fg">
-            <label>First name *</label>
-            <input type="text" name="first_name" placeholder="Ada" required />
-          </div>
-          <div class="fg">
-            <label>Last name *</label>
-            <input type="text" name="last_name" placeholder="Lovelace" required />
-          </div>
+          <div class="fg"><label>First name *</label><input type="text" name="first_name" placeholder="Ada" required /></div>
+          <div class="fg"><label>Last name *</label><input type="text" name="last_name" placeholder="Lovelace" required /></div>
         </div>
-        <div class="fg">
-          <label>Email *</label>
-          <input type="email" name="email" placeholder="ada@example.com" required />
-        </div>
-        <div class="fg">
-          <label>LinkedIn or personal site</label>
-          <input type="text" name="profile_url" placeholder="linkedin.com/in/yourprofile" />
-        </div>
+        <div class="fg"><label>Email *</label><input type="email" name="email" placeholder="ada@example.com" required /></div>
+        <div class="fg"><label>LinkedIn or personal site</label><input type="text" name="profile_url" placeholder="linkedin.com/in/yourprofile" /></div>
         <div class="fg">
           <label>Your background *</label>
           <select name="role" required>
@@ -520,14 +405,8 @@
             <option value="other">Something else</option>
           </select>
         </div>
-        <div class="fg">
-          <label>Where you are</label>
-          <input type="text" name="location" placeholder="City, country" />
-        </div>
-        <div class="fg">
-          <label>What you see that others miss *</label>
-          <textarea name="why" placeholder="A sentence or two is enough." required></textarea>
-        </div>
+        <div class="fg"><label>Where you are</label><input type="text" name="location" placeholder="City, country" /></div>
+        <div class="fg"><label>What you see that others miss *</label><textarea name="why" placeholder="A sentence or two is enough." required></textarea></div>
         <label class="f-consent">
           <input type="checkbox" name="consent" value="true" required />
           <span>I'm happy to be contacted by FathomX about this project.</span>
@@ -551,58 +430,79 @@
 <script>
 /* NAV */
 (function(){
-  var nav = document.getElementById('nav');
-  function tick(){ nav.classList.toggle('up', window.scrollY > 50); }
-  window.addEventListener('scroll', tick, {passive:true}); tick();
+  var nav=document.getElementById('nav');
+  function t(){ nav.classList.toggle('up', window.scrollY>50); }
+  window.addEventListener('scroll',t,{passive:true}); t();
 })();
 
 /* REVEAL */
 (function(){
-  var els = document.querySelectorAll('[data-reveal]');
-  var io = new IntersectionObserver(function(entries){
+  var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, {threshold: 0.1});
-  els.forEach(function(el){ io.observe(el); });
+  },{threshold:0.1});
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
 })();
 
-/* STAR CANVAS */
+/* VIDEO STITCH */
 (function(){
-  var c = document.getElementById('stars');
-  if(!c) return;
-  var ctx = c.getContext('2d');
-  var W, H, pts = [];
-  function resize(){ W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; }
-  resize(); window.addEventListener('resize', resize);
-  for(var i=0;i<60;i++) pts.push({x:Math.random()*1600,y:Math.random()*900,r:Math.random()*0.9+0.1,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,a:Math.random()*.22+.04});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(function(p){
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0)p.x=W; if(p.x>W)p.x=0;
-      if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(212,151,74,'+p.a+')'; ctx.fill();
-    });
-    requestAnimationFrame(draw);
+  var CLIPS = [
+    { id:'sv0', tag:'Open water', title:'Solar already goes<br>where ships go.', sub:'If it powers a sailboat crossing the Pacific, it can power a platform anchored there.' },
+    { id:'sv1', tag:'Off-grid everywhere', title:'From rooftops to<br><em>the open ocean.</em>', sub:'The same technology that charges a camper van can power a city grid — at unlimited scale.' },
+    { id:'sv2', tag:'The platform', title:'Collect. Convert.<br>Deliver.', sub:'Solar, wind, and wave energy. One floating structure. One cable back to the mainland.' }
+  ];
+  var vids  = CLIPS.map(function(c){ return document.getElementById(c.id); });
+  var pills = document.querySelectorAll('.sp');
+  var tag   = document.getElementById('sTag');
+  var title = document.getElementById('sTitle');
+  var sub   = document.getElementById('sSub');
+  if(!vids[0]) return;
+
+  var DUR = 9000, cur = 0, timer;
+
+  function go(idx){
+    var prev = cur; cur = idx % CLIPS.length;
+    vids[prev].style.opacity = '0';
+    vids[cur].style.opacity  = '1';
+    vids[cur].currentTime    = 0;
+    vids[cur].play().catch(function(){});
+    pills.forEach(function(p,i){ p.classList.remove('active','done'); if(i<cur) p.classList.add('done'); });
+    pills[cur].classList.add('active');
+    tag.style.opacity   = '0';
+    title.style.opacity = '0';
+    sub.style.opacity   = '0';
+    setTimeout(function(){
+      tag.textContent   = CLIPS[cur].tag;
+      title.innerHTML   = CLIPS[cur].title;
+      sub.textContent   = CLIPS[cur].sub;
+      tag.style.opacity = title.style.opacity = sub.style.opacity = '1';
+    }, 320);
+    clearTimeout(timer);
+    timer = setTimeout(function(){ go(cur+1); }, DUR);
   }
-  draw();
+
+  pills.forEach(function(p,i){ p.addEventListener('click', function(){ go(i); }); });
+
+  var io = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){ vids[cur].play().catch(function(){}); } else { vids.forEach(function(v){ v.pause(); }); }
+  },{threshold:0.3});
+  io.observe(document.querySelector('.stitch'));
+
+  vids[0].play().catch(function(){});
+  timer = setTimeout(function(){ go(1); }, DUR);
 })();
 
 /* FORM */
 (function(){
-  var form = document.getElementById('jForm');
-  var btn  = document.getElementById('fBtn');
-  var win  = document.getElementById('fWin');
+  var form=document.getElementById('jForm'), btn=document.getElementById('fBtn'), win=document.getElementById('fWin');
   if(!form) return;
   form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    btn.disabled=true; btn.textContent='Sending…';
-    var data = Object.fromEntries(new FormData(form));
+    e.preventDefault(); btn.disabled=true; btn.textContent='Sending…';
+    var data=Object.fromEntries(new FormData(form));
     try{
-      var res  = await fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-      var json = await res.json();
+      var res=await fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      var json=await res.json();
       if(json.success){ form.style.display='none'; win.style.display='block'; }
-      else { btn.disabled=false; btn.textContent='Count me in →'; alert(json.message||'Something went wrong.'); }
+      else{ btn.disabled=false; btn.textContent='Count me in →'; alert(json.message||'Something went wrong.'); }
     }catch(err){ btn.disabled=false; btn.textContent='Count me in →'; alert('Network error. Please try again.'); }
   });
 })();
