@@ -69,6 +69,10 @@
     nav.up { background: rgba(6,13,20,0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom-color: rgba(255,255,255,0.05); }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; }
     .nav-logo em { font-style: italic; color: var(--amber); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.48); transition: color 0.2s; }
+    .nav-links a:hover { color: rgba(255,255,255,0.88); }
+    @media (max-width: 680px) { .nav-links { display: none; } }
     .nav-cta { background: var(--amber); color: var(--deep); padding: 0.48rem 1.2rem; border-radius: 6px; font-weight: 700; font-size: 0.82rem; transition: background 0.2s; }
     .nav-cta:hover { background: var(--gold); }
 
@@ -381,6 +385,12 @@
 
 <nav id="nav">
   <div class="nav-logo">Fathom<em>X</em></div>
+  <ul class="nav-links">
+    <li><a href="#stitch">The vision</a></li>
+    <li><a href="#why">Economics</a></li>
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#join">Apply</a></li>
+  </ul>
   <a href="#join" class="nav-cta">Get involved</a>
 </nav>
 
