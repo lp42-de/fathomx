@@ -378,7 +378,7 @@
 <!-- VIDEO HERO -->
 <section class="v-hero">
   <video autoplay muted playsinline loop preload="auto" poster="/assets/images/sunrise-poster.jpg">
-    <source src="/assets/videos/sunrise-aerial.mp4" type="video/mp4" />
+    <source src="/assets/videos/open-ocean-aerial.mp4" type="video/mp4" />
   </video>
   <div class="v-hero-grad"></div>
   <div class="v-hero-body">
@@ -402,13 +402,13 @@
 <section class="stitch" id="stitch">
   <div class="stitch-wrap">
     <video class="sv" id="sv0" muted playsinline preload="auto">
-      <source src="/assets/videos/sailboat-solar.mp4" type="video/mp4" />
+      <source src="/assets/videos/wind-turbines-sea.mp4" type="video/mp4" />
     </video>
     <video class="sv" id="sv1" muted playsinline preload="auto">
-      <source src="/assets/videos/camper-van-solar.mp4" type="video/mp4" />
+      <source src="/assets/videos/floating-solar.mp4" type="video/mp4" />
     </video>
     <video class="sv" id="sv2" muted playsinline preload="auto">
-      <source src="/assets/videos/solar-loop.mp4" type="video/mp4" />
+      <source src="/assets/videos/ocean-waves.mp4" type="video/mp4" />
     </video>
     <div class="stitch-grad"></div>
     <div class="stitch-pills" id="sPills">
@@ -417,9 +417,9 @@
       <div class="sp" style="width:60px;--dur:9s"></div>
     </div>
     <div class="stitch-cap">
-      <div class="sc-tag" id="sTag">Open water</div>
-      <h2 class="sc-h" id="sTitle">Solar already goes<br>where ships go.</h2>
-      <p class="sc-sub" id="sSub">If it powers a sailboat crossing the Pacific, it can power a platform anchored there.</p>
+      <div class="sc-tag" id="sTag">Wind</div>
+      <h2 class="sc-h" id="sTitle">Offshore wind already<br>operates commercially.</h2>
+      <p class="sc-sub" id="sSub">The Hywind Tampen farm off Norway has been running since 2022. The technology is proven.</p>
     </div>
   </div>
 </section>
@@ -739,9 +739,9 @@
 /* VIDEO STITCH */
 (function(){
   var CLIPS = [
-    { id:'sv0', tag:'Open water', title:'Solar already goes<br>where ships go.', sub:'If it powers a sailboat crossing the Pacific, it can power a platform anchored there.' },
-    { id:'sv1', tag:'Off-grid everywhere', title:'From rooftops to<br><em>the open ocean.</em>', sub:'The same technology that charges a camper van can power a city grid — at unlimited scale.' },
-    { id:'sv2', tag:'The platform', title:'Collect. Convert.<br>Deliver.', sub:'Solar, wind, and wave energy. One floating structure. One cable back to the mainland.' }
+    { id:'sv0', tag:'Wind', title:'Offshore wind already<br>operates commercially.', sub:'The Hywind Tampen farm off Norway has been running since 2022. The technology is proven.' },
+    { id:'sv1', tag:'Solar', title:'Floating solar works<br><em>at any scale.</em>', sub:'Floating solar farms cover reservoirs across Southeast Asia. The same platform works at sea.' },
+    { id:'sv2', tag:'Wave & tide', title:'The ocean never<br>stops moving.', sub:'Wave and tidal energy is constant, predictable, and completely untapped in international waters.' }
   ];
   var vids  = CLIPS.map(function(c){ return document.getElementById(c.id); });
   var pills = document.querySelectorAll('.sp');
