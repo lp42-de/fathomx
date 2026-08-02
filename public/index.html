@@ -107,6 +107,15 @@
     .vstat .n em { font-style: normal; color: var(--amber); }
     .vstat .l { font-size: 0.7rem; color: rgba(255,255,255,0.28); margin-top: 4px; letter-spacing: 0.04em; }
 
+    /* ── STAT BAND ── */
+    .stat-band { background: var(--navy); border-bottom: 1px solid var(--line); padding: 0; }
+    .stat-band-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+    .sband { padding: 1.75rem 2rem; border-right: 1px solid var(--line); }
+    .sband:last-child { border-right: none; }
+    .sband-n { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--amber); line-height: 1; margin-bottom: 0.3rem; }
+    .sband-l { font-size: 0.72rem; color: rgba(255,255,255,0.33); line-height: 1.5; }
+    @media (max-width: 640px) { .stat-band-inner { grid-template-columns: 1fr 1fr; } .sband { border-bottom: 1px solid var(--line); } }
+
     /* ── STITCH VIDEO ── */
     .stitch { position: relative; background: #000; overflow: hidden; }
     .stitch-wrap { position: relative; width: 100%; aspect-ratio: 16/9; min-height: 380px; }
@@ -184,7 +193,7 @@
     .gal-hd h2 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.18; }
     .gal-hd h2 em { font-style: italic; color: var(--amber); }
     .gal-hd p { font-size: 0.87rem; color: rgba(255,255,255,0.35); max-width: 300px; text-align: right; line-height: 1.65; }
-    .gal-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 420px; gap: 10px; }
+    .gal-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 360px 280px; gap: 10px; }
     .gi { border-radius: 8px; overflow: hidden; position: relative; background: var(--navy3); }
     .gi img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, opacity 0.4s; display: block; opacity: 0.78; }
     .gi:hover img { transform: scale(1.04); opacity: 0.92; }
@@ -398,6 +407,16 @@
   </div>
 </section>
 
+<!-- STAT BAND -->
+<div class="stat-band">
+  <div class="stat-band-inner">
+    <div class="sband"><div class="sband-n">71%</div><div class="sband-l">of Earth's surface is ocean — none of it used for offshore renewable energy</div></div>
+    <div class="sband"><div class="sband-n">$0.40</div><div class="sband-l">per kWh — what island nations pay for diesel electricity today</div></div>
+    <div class="sband"><div class="sband-n">720 km</div><div class="sband-l">longest operating submarine power cable — the NorNed line, running since 2008</div></div>
+    <div class="sband"><div class="sband-n">Zero</div><div class="sband-l">commercial energy platforms operating beyond the 200-nautical-mile line</div></div>
+  </div>
+</div>
+
 <!-- STITCH VIDEO -->
 <section class="stitch" id="stitch">
   <div class="stitch-wrap">
@@ -477,6 +496,14 @@
     <div class="gi" data-reveal data-d="1">
       <img src="/assets/images/floating-solar-frame.jpg" alt="Floating solar farm aerial" loading="lazy" />
       <div class="gi-cap">Solar — floating farms on water, proven at scale in Southeast Asia</div>
+    </div>
+    <div class="gi" data-reveal data-d="2">
+      <img src="/assets/images/ocean-waves-frame.jpg" alt="Ocean waves in open water" loading="lazy" />
+      <div class="gi-cap">Wave — the ocean never stops moving; constant, predictable energy</div>
+    </div>
+    <div class="gi" data-reveal data-d="3">
+      <img src="/assets/images/ocean-poster.jpg" alt="Open ocean aerial view" loading="lazy" />
+      <div class="gi-cap">Location — 380 nautical miles from the nearest coast, in international waters</div>
     </div>
   </div>
 </section>
@@ -687,7 +714,8 @@
       <div class="f-success" id="fWin">
         <div class="check">✓</div>
         <h3>Got it.</h3>
-        <p>Every submission is read personally.<br>We'll be in touch.</p>
+        <p>Every submission is read personally.<br>We'll be in touch within 48 hours.</p>
+        <p style="margin-top:1rem;font-size:0.78rem;color:rgba(212,151,74,0.5);letter-spacing:0.04em;">Reference: <span id="fRef" style="color:rgba(212,151,74,0.8);font-weight:600;"></span></p>
       </div>
     </div>
   </div>
@@ -804,7 +832,11 @@
     try{
       var res  = await fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
       var json = await res.json();
-      if(json.success){ form.style.display = 'none'; win.style.display = 'block'; }
+      if(json.success){
+        var refEl = document.getElementById('fRef');
+        if(refEl && json.referenceId) refEl.textContent = json.referenceId;
+        form.style.display = 'none'; win.style.display = 'block';
+      }
       else{ btn.disabled = false; btn.textContent = 'Count me in →'; alert(json.message || 'Something went wrong.'); }
     }catch(err){ btn.disabled = false; btn.textContent = 'Count me in →'; alert('Network error. Please try again.'); }
   });
