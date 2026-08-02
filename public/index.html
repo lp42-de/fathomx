@@ -28,14 +28,35 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--deep); color: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--deep); color: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; animation: pagein 0.5s ease both; }
+    @keyframes pagein { from { opacity: 0; } to { opacity: 1; } }
     h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, serif; }
     a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
-    [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-    [data-reveal].visible { opacity: 1; transform: none; }
-    [data-reveal][data-d="1"] { transition-delay: 0.1s; }
-    [data-reveal][data-d="2"] { transition-delay: 0.22s; }
+    [data-reveal] { opacity: 0; transform: translateY(32px) scale(0.985); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+    [data-reveal].visible { opacity: 1; transform: translateY(0) scale(1); }
+    [data-reveal][data-d="1"] { transition-delay: 0.07s; }
+    [data-reveal][data-d="2"] { transition-delay: 0.16s; }
+    [data-reveal][data-d="3"] { transition-delay: 0.27s; }
+    [data-reveal][data-d="4"] { transition-delay: 0.40s; }
+
+    /* ── ANNOUNCE BAR ── */
+    .announce {
+      background: var(--navy); color: rgba(255,255,255,0.55);
+      text-align: center; padding: 10px 1rem;
+      font-size: 0.77rem; letter-spacing: 0.015em;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .announce strong { color: var(--amber); }
+
+    /* ── ACTIVITY TICKER ── */
+    .ticker { background: var(--deep); overflow: hidden; padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .ticker-track { display: flex; white-space: nowrap; animation: ticker-run 60s linear infinite; }
+    .ticker-track:hover { animation-play-state: paused; }
+    .t-item { padding: 0 2.2rem; font-size: 0.77rem; color: rgba(255,255,255,0.38); flex-shrink: 0; }
+    .t-item strong { color: var(--amber); }
+    @keyframes ticker-run { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* ── NAV ── */
     nav {
@@ -45,7 +66,7 @@
       transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
       border-bottom: 1px solid transparent;
     }
-    nav.up { background: rgba(6,13,20,0.9); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom-color: rgba(255,255,255,0.05); }
+    nav.up { background: rgba(6,13,20,0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom-color: rgba(255,255,255,0.05); }
     .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; }
     .nav-logo em { font-style: italic; color: var(--amber); }
     .nav-cta { background: var(--amber); color: var(--deep); padding: 0.48rem 1.2rem; border-radius: 6px; font-weight: 700; font-size: 0.82rem; transition: background 0.2s; }
@@ -53,39 +74,38 @@
 
     /* ── VIDEO HERO ── */
     .v-hero { position: relative; height: 100vh; min-height: 560px; overflow: hidden; background: #000; }
-    .v-hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+    .v-hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.72; }
     .v-hero-grad {
       position: absolute; inset: 0; z-index: 1;
       background:
-        linear-gradient(to top, rgba(6,13,20,0.92) 0%, rgba(6,13,20,0.4) 40%, rgba(6,13,20,0.1) 100%),
-        linear-gradient(to right, rgba(6,13,20,0.5) 0%, transparent 60%);
+        linear-gradient(to top, rgba(6,13,20,0.95) 0%, rgba(6,13,20,0.45) 40%, rgba(6,13,20,0.12) 100%),
+        linear-gradient(to right, rgba(6,13,20,0.55) 0%, transparent 60%);
     }
     .v-hero-body {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
       padding: 0 3rem 5rem;
     }
     .v-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); opacity: 0.85; margin-bottom: 1.1rem; display: flex; align-items: center; gap: 10px; }
-    .v-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--amber); }
+    .v-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--amber); }
     .v-hero h1 {
       font-size: clamp(2.8rem, 6vw, 5.5rem);
       font-weight: 900; line-height: 1.02; letter-spacing: -0.03em;
       max-width: 780px; margin-bottom: 1.4rem;
     }
     .v-hero h1 em { font-style: italic; color: var(--amber); }
-    .v-hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 440px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .v-hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.52); max-width: 440px; line-height: 1.8; margin-bottom: 2.5rem; }
     .v-hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-a { background: var(--amber); color: var(--deep); padding: 0.85rem 2rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: background 0.2s, transform 0.15s; }
     .btn-a:hover { background: var(--gold); transform: translateY(-1px); }
     .btn-b { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); padding: 0.85rem 2rem; border-radius: 8px; font-weight: 500; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.12); transition: all 0.2s; }
     .btn-b:hover { background: rgba(255,255,255,0.13); color: var(--white); }
-
     .v-hero-stats {
       display: flex; gap: 3.5rem; margin-top: 4rem; padding-top: 2.5rem;
       border-top: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap;
     }
     .vstat .n { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; line-height: 1; }
     .vstat .n em { font-style: normal; color: var(--amber); }
-    .vstat .l { font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 4px; letter-spacing: 0.04em; }
+    .vstat .l { font-size: 0.7rem; color: rgba(255,255,255,0.28); margin-top: 4px; letter-spacing: 0.04em; }
 
     /* ── STITCH VIDEO ── */
     .stitch { position: relative; background: #000; overflow: hidden; }
@@ -103,10 +123,7 @@
       position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%);
       display: flex; gap: 6px; z-index: 4;
     }
-    .sp {
-      height: 3px; border-radius: 2px;
-      background: rgba(255,255,255,0.2); overflow: hidden; position: relative;
-    }
+    .sp { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.2); overflow: hidden; position: relative; cursor: pointer; }
     .sp::after { content: ''; position: absolute; inset: 0; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: none; }
     .sp.active::after { animation: pfill var(--dur, 9s) linear forwards; }
     .sp.done::after { transform: scaleX(1); }
@@ -119,25 +136,39 @@
     .sc-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(212,151,74,0.7); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 7px; }
     .sc-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--amber); animation: blink 2.2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-    .sc-h { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.18; transition: opacity 0.3s; }
-    .sc-sub { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-top: 0.35rem; transition: opacity 0.3s; }
+    .sc-h { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.18; }
+    .sc-sub { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-top: 0.35rem; max-width: 540px; }
+
+    /* ── INTRO STORY ── */
+    .intro-wrap { background: var(--navy); }
+    .intro { padding: 7rem 3rem; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .intro-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.6); margin-bottom: 0.6rem; }
+    .intro-text h2 { font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 700; line-height: 1.18; letter-spacing: -0.025em; margin-bottom: 1.5rem; }
+    .intro-text h2 em { font-style: italic; color: var(--amber); }
+    .intro-text p { font-size: 0.97rem; color: rgba(255,255,255,0.44); line-height: 1.8; margin-bottom: 1.1rem; }
+    .intro-photo { border-radius: 12px; overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 2px 0 0 var(--amber), 0 20px 60px rgba(0,0,0,0.5); }
+    .intro-photo img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ── PULL QUOTE ── */
-    .pq { background: var(--navy); padding: 6rem 3rem; text-align: center; }
+    .pq {
+      background: var(--navy);
+      background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 40px);
+      padding: 7rem 3rem; text-align: center;
+    }
     .pq blockquote {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.5rem, 3vw, 2.4rem);
       font-weight: 400; font-style: italic;
-      color: rgba(255,255,255,0.82); max-width: 820px;
+      color: rgba(255,255,255,0.84); max-width: 820px;
       margin: 0 auto 1.25rem; line-height: 1.5; letter-spacing: -0.01em;
     }
     .pq blockquote::before { content: '\201C'; font-size: 4rem; color: var(--amber); line-height: 0; vertical-align: -1.4rem; margin-right: 0.12em; opacity: 0.55; }
     .pq blockquote strong { font-weight: 700; font-style: normal; color: var(--white); }
-    .pq cite { font-size: 0.75rem; color: rgba(212,151,74,0.4); font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; }
+    .pq cite { font-size: 0.75rem; color: rgba(212,151,74,0.42); font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* ── SINGLE FULL VIDEO ── */
+    /* ── FULL VIDEO ── */
     .full-vid { position: relative; background: #000; overflow: hidden; }
-    .full-vid video { width: 100%; display: block; max-height: 70vh; object-fit: cover; opacity: 0.8; }
+    .full-vid video { width: 100%; display: block; max-height: 70vh; object-fit: cover; opacity: 0.78; }
     .full-vid-cap {
       position: absolute; bottom: 0; left: 0; right: 0;
       padding: 4rem 3rem 2.5rem;
@@ -147,7 +178,52 @@
     .full-vid-cap h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.2; }
     .full-vid-cap p { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-top: 0.4rem; max-width: 500px; }
 
-    /* ── GRID SECTION (3 facts) ── */
+    /* ── GALLERY ── */
+    .gallery { background: var(--navy2); padding: 7rem 3rem; }
+    .gal-hd { max-width: 1080px; margin: 0 auto 3rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; }
+    .gal-hd h2 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.18; }
+    .gal-hd h2 em { font-style: italic; color: var(--amber); }
+    .gal-hd p { font-size: 0.87rem; color: rgba(255,255,255,0.35); max-width: 300px; text-align: right; line-height: 1.65; }
+    .gal-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: 300px 220px; gap: 10px; }
+    .gi { border-radius: 8px; overflow: hidden; position: relative; background: var(--navy3); }
+    .gi.tall { grid-row: 1 / 3; }
+    .gi img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, opacity 0.4s; display: block; opacity: 0.78; }
+    .gi:hover img { transform: scale(1.04); opacity: 0.92; }
+    .gi-cap { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.1rem; background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 100%); color: rgba(255,255,255,0.82); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.02em; opacity: 0; transition: opacity 0.25s; }
+    .gi:hover .gi-cap { opacity: 1; }
+    @media (max-width: 700px) {
+      .gallery { padding: 4rem 0; }
+      .gal-hd { padding: 0 1.5rem; }
+      .gal-hd p { text-align: left; max-width: 100%; }
+      .gal-grid { display: flex; flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: 10px; padding: 0 1.5rem 1rem; scrollbar-width: none; }
+      .gal-grid::-webkit-scrollbar { display: none; }
+      .gi, .gi.tall { grid-row: auto; flex: 0 0 72vw; max-width: 300px; height: 220px; scroll-snap-align: start; }
+      .gi-cap { opacity: 1; }
+    }
+
+    /* ── NUMBERS / MATH ── */
+    .math-sec { background: var(--navy); padding: 7rem 3rem; }
+    .math-in { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .math-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.6); margin-bottom: 0.6rem; }
+    .math-text h2 { font-size: clamp(1.65rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 1.25rem; margin-top: 0.75rem; }
+    .math-text h2 em { font-style: italic; color: var(--amber); }
+    .math-text p { color: rgba(255,255,255,0.44); font-size: 0.93rem; line-height: 1.78; margin-bottom: 1rem; }
+    .mlist { margin-top: 1.75rem; }
+    .mitem { display: flex; justify-content: space-between; align-items: center; padding: 0.95rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mitem:last-child { border-bottom: none; }
+    .mitem .ml { color: rgba(255,255,255,0.38); font-size: 0.86rem; }
+    .mitem .mv { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--amber); font-size: 1.05rem; }
+    .chart-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(212,151,74,0.1); border-radius: 12px; padding: 2rem; }
+    .chart-panel h4 { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.24); margin-bottom: 1.75rem; }
+    .brow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .blbl { width: 110px; text-align: right; font-size: 0.72rem; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+    .btrk { flex: 1; height: 32px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden; }
+    .bfil { height: 100%; border-radius: 5px; display: flex; align-items: center; padding-left: 10px; font-size: 0.74rem; font-weight: 700; transition: width 1.6s cubic-bezier(.4,0,.2,1); width: 0; }
+    .bf1 { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.32); }
+    .bf2 { background: linear-gradient(90deg, var(--navy3), var(--amber)); color: #fff; }
+    @media (max-width: 760px) { .math-in { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* ── GRID FACTS ── */
     .facts { background: var(--deep); padding: 6rem 3rem; }
     .facts-inner { max-width: var(--max); margin: 0 auto; }
     .facts h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 3.5rem; max-width: 520px; line-height: 1.2; }
@@ -155,22 +231,9 @@
     .facts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-radius: var(--r); overflow: hidden; }
     .fc { background: var(--navy); padding: 2.25rem 2rem; transition: background 0.2s; }
     .fc:hover { background: var(--navy2); }
-    .fc-n { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: rgba(212,151,74,0.14); line-height: 1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
+    .fc-n { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: rgba(212,151,74,0.12); line-height: 1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
     .fc h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.015em; }
-    .fc p { font-size: 0.88rem; color: rgba(255,255,255,0.44); line-height: 1.72; }
-
-    /* ── PHOTO ROW ── */
-    .photo-row { display: grid; grid-template-columns: 1fr 1fr; height: 480px; }
-    .pr-cell { position: relative; overflow: hidden; background: var(--navy); }
-    .pr-cell img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: transform 0.6s ease, opacity 0.4s; display: block; }
-    .pr-cell:hover img { transform: scale(1.04); opacity: 0.85; }
-    .pr-cap {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 2rem 2rem 1.5rem;
-      background: linear-gradient(to top, rgba(6,13,20,0.88) 0%, transparent 100%);
-    }
-    .pr-cap h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .pr-cap p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+    .fc p { font-size: 0.88rem; color: rgba(255,255,255,0.42); line-height: 1.72; }
 
     /* ── JOIN ── */
     .join { background: var(--navy); padding: 7rem 3rem 8rem; }
@@ -178,12 +241,12 @@
     .join-hd { margin-bottom: 3rem; }
     .join-hd h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; }
     .join-hd h2 em { font-style: italic; color: var(--amber); }
-    .join-hd p { font-size: 1rem; color: rgba(255,255,255,0.46); line-height: 1.8; }
+    .join-hd p { font-size: 1rem; color: rgba(255,255,255,0.44); line-height: 1.8; }
 
     .join-form-wrap { background: var(--navy2); border: 1px solid var(--line); border-radius: 14px; padding: 2.5rem; }
     .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .fg { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.2rem; }
-    .fg label { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.07em; }
+    .fg label { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.38); text-transform: uppercase; letter-spacing: 0.07em; }
     .fg input, .fg select, .fg textarea {
       background: var(--navy3); border: 1px solid var(--line);
       border-radius: 8px; padding: 0.75rem 1rem;
@@ -195,20 +258,20 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7080' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer;
     }
-    .fg input::placeholder, .fg textarea::placeholder { color: rgba(90,112,128,0.6); }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(90,112,128,0.55); }
     .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: rgba(212,151,74,0.45); box-shadow: 0 0 0 3px rgba(212,151,74,0.07); }
     .fg select option { background: var(--navy3); }
     .fg textarea { resize: vertical; min-height: 88px; }
     .f-consent { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.5rem; cursor: pointer; }
     .f-consent input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--amber); width: 15px; height: 15px; }
-    .f-consent span { font-size: 0.82rem; color: rgba(255,255,255,0.32); line-height: 1.6; }
+    .f-consent span { font-size: 0.82rem; color: rgba(255,255,255,0.30); line-height: 1.6; }
     .f-submit { width: 100%; background: var(--amber); color: var(--deep); border: none; border-radius: 8px; padding: 1rem; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
     .f-submit:hover { background: var(--gold); transform: translateY(-1px); box-shadow: 0 10px 32px rgba(212,151,74,0.2); }
     .f-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
     .f-success { display: none; text-align: center; padding: 2.5rem 0; }
     .f-success .check { width: 52px; height: 52px; border-radius: 50%; background: rgba(212,151,74,0.08); border: 1.5px solid rgba(212,151,74,0.4); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin: 0 auto 1.25rem; color: var(--amber); }
     .f-success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .f-success p { color: rgba(255,255,255,0.42); font-size: 0.9rem; line-height: 1.7; }
+    .f-success p { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.7; }
 
     /* ── FOOTER ── */
     footer { background: var(--deep); border-top: 1px solid var(--line); padding: 2.25rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
@@ -219,8 +282,8 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
       .facts-grid { grid-template-columns: 1fr 1fr; }
-      .photo-row { grid-template-columns: 1fr; height: auto; }
-      .pr-cell { height: 280px; }
+      .intro { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+      .intro-photo { aspect-ratio: 16/9; }
     }
     @media (max-width: 640px) {
       nav { padding: 0 1.5rem; }
@@ -230,6 +293,7 @@
       .full-vid-cap { padding: 2.5rem 1.5rem 1.75rem; }
       .facts { padding: 5rem 1.5rem; }
       .facts-grid { grid-template-columns: 1fr; }
+      .math-sec { padding: 5rem 1.5rem; }
       .join { padding: 5rem 1.5rem 6rem; }
       .join-form-wrap { padding: 1.75rem; }
       .frow { grid-template-columns: 1fr; }
@@ -239,6 +303,29 @@
   </style>
 </head>
 <body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce">
+  We're assembling the founding team — <strong>zero revenue, zero funding, one idea nobody has tried.</strong>
+</div>
+
+<!-- ACTIVITY TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="t-item">🌊 <strong>13°N · 142°E</strong> — 380 nautical miles from the nearest coast</span>
+    <span class="t-item">⚡ <strong>0.40/kWh</strong> — what island nations pay for diesel power today</span>
+    <span class="t-item">🌐 <strong>71%</strong> of Earth's surface has never been used to generate energy</span>
+    <span class="t-item">🛞 <strong>Floating turbines</strong> operate commercially off Norway since 2017</span>
+    <span class="t-item">🔌 <strong>720 km</strong> — the NorNed cable carries 700 MW under the North Sea</span>
+    <span class="t-item">📡 <strong>No jurisdiction</strong> beyond the 200-nautical-mile exclusive economic zone</span>
+    <span class="t-item">🌊 <strong>13°N · 142°E</strong> — 380 nautical miles from the nearest coast</span>
+    <span class="t-item">⚡ <strong>0.40/kWh</strong> — what island nations pay for diesel power today</span>
+    <span class="t-item">🌐 <strong>71%</strong> of Earth's surface has never been used to generate energy</span>
+    <span class="t-item">🛞 <strong>Floating turbines</strong> operate commercially off Norway since 2017</span>
+    <span class="t-item">🔌 <strong>720 km</strong> — the NorNed cable carries 700 MW under the North Sea</span>
+    <span class="t-item">📡 <strong>No jurisdiction</strong> beyond the 200-nautical-mile exclusive economic zone</span>
+  </div>
+</div>
 
 <nav id="nav">
   <div class="nav-logo">Fathom<em>X</em></div>
@@ -262,7 +349,8 @@
     <div class="v-hero-stats">
       <div class="vstat"><div class="n"><em>71</em>%</div><div class="l">of Earth is ocean</div></div>
       <div class="vstat"><div class="n"><em>0</em></div><div class="l">commercial platforms in international waters</div></div>
-      <div class="vstat"><div class="n"><em>∞</em></div><div class="l">no landlord, no permit, no expiry</div></div>
+      <div class="vstat"><div class="n"><em>$0.40</em></div><div class="l">per kWh — island diesel price today</div></div>
+      <div class="vstat"><div class="n"><em>∞</em></div><div class="l">no landlord · no permit · no expiry</div></div>
     </div>
   </div>
 </section>
@@ -293,6 +381,22 @@
   </div>
 </section>
 
+<!-- INTRO STORY -->
+<div class="intro-wrap">
+  <div class="intro">
+    <div class="intro-text" data-reveal>
+      <div class="intro-eyebrow">The opportunity</div>
+      <h2>Every offshore energy project in history has been built<br><em>inside someone's waters.</em></h2>
+      <p>The North Sea. The Persian Gulf. The Bass Strait. Every one of them sits inside an exclusive economic zone — subject to permits, politics, elections, and landlords who can change their mind.</p>
+      <p>The open ocean — 110 million square miles beyond the 200-mile line — has never been used to generate energy at scale. Not because it can't be done. Because nobody has gone there yet.</p>
+      <p>The technology exists. Floating turbines. Submarine cables. Offshore structures that survive Category 5 storms. The only thing missing is someone willing to anchor in waters that belong to everyone and no one.</p>
+    </div>
+    <div class="intro-photo" data-reveal data-d="2">
+      <img src="/assets/images/solar-aerial-view.jpg" alt="Aerial view of solar infrastructure" loading="lazy" />
+    </div>
+  </div>
+</div>
+
 <!-- PULL QUOTE -->
 <section class="pq">
   <blockquote data-reveal>
@@ -304,7 +408,7 @@
   <cite data-reveal data-d="1">13°N · 142°E · 380 nautical miles from the nearest coast</cite>
 </section>
 
-<!-- FULL VIDEO -->
+<!-- STITCH 2: FULL VIDEO -->
 <section class="full-vid">
   <video autoplay muted playsinline loop preload="auto">
     <source src="/assets/videos/panels-sun.mp4" type="video/mp4" />
@@ -312,24 +416,92 @@
   <div class="full-vid-cap">
     <div class="eyebrow">The platform</div>
     <h2>Solar. Wind. Wave.<br>One floating structure.</h2>
-    <p>Modular, permanent, anchored beyond any jurisdiction.</p>
+    <p>Modular, permanent, anchored beyond any jurisdiction. One cable back to the mainland.</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="platform">
+  <div class="gal-hd" data-reveal>
+    <h2>What it<br><em>actually looks like.</em></h2>
+    <p>The components are already operating commercially. We're assembling them in the one place nobody has tried.</p>
+  </div>
+  <div class="gal-grid">
+    <div class="gi tall" data-reveal>
+      <img src="/assets/images/solar-aerial-view.jpg" alt="Aerial view" loading="lazy" />
+      <div class="gi-cap">Aerial view — solar infrastructure at scale</div>
+    </div>
+    <div class="gi" data-reveal data-d="1">
+      <img src="/assets/images/rooftop-panels.jpg" alt="Panel array" loading="lazy" />
+      <div class="gi-cap">Panel arrays — same tech, different anchor</div>
+    </div>
+    <div class="gi" data-reveal data-d="2">
+      <img src="/assets/images/panels-closeup.jpg" alt="Panels close up" loading="lazy" />
+      <div class="gi-cap">Monocrystalline panels, commercial grade</div>
+    </div>
+    <div class="gi" data-reveal data-d="1">
+      <img src="/assets/images/sunrise-poster.jpg" alt="Horizon" loading="lazy" />
+      <div class="gi-cap">The horizon — 380 miles of open water</div>
+    </div>
+    <div class="gi" data-reveal data-d="2">
+      <img src="/assets/images/solar-install-day.jpg" alt="Installation" loading="lazy" />
+      <div class="gi-cap">Installation day — crew at work</div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="math-sec" id="why">
+  <div class="math-in">
+    <div class="math-text" data-reveal>
+      <div class="math-eyebrow">The economics</div>
+      <h2>Why the numbers<br><em>work at sea.</em></h2>
+      <p>Island nations and fast-growing economies import power at $0.20–0.45/kWh. A floating platform producing at $0.04–0.08/kWh — even after cable transmission losses — leaves enormous margin for a 25-year supply agreement.</p>
+      <p>There's no land lease. No permit renewal. No election cycle that changes the terms. The moat is geographic.</p>
+      <div class="mlist">
+        <div class="mitem"><span class="ml">Island diesel (today)</span><span class="mv">$0.40 / kWh</span></div>
+        <div class="mitem"><span class="ml">Offshore wind LCOE</span><span class="mv">$0.08 / kWh</span></div>
+        <div class="mitem"><span class="ml">Utility-scale solar LCOE</span><span class="mv">$0.04 / kWh</span></div>
+        <div class="mitem"><span class="ml">Asset life</span><span class="mv">40 years</span></div>
+        <div class="mitem"><span class="ml">Jurisdiction risk</span><span class="mv">Zero</span></div>
+      </div>
+    </div>
+    <div class="chart-panel" data-reveal data-d="2">
+      <h4>Cost per kWh — comparison</h4>
+      <div class="brow">
+        <div class="blbl">Island diesel</div>
+        <div class="btrk"><div class="bfil bf1" id="bar1">$0.40</div></div>
+      </div>
+      <div class="brow">
+        <div class="blbl">Grid import</div>
+        <div class="btrk"><div class="bfil bf1" id="bar2">$0.18</div></div>
+      </div>
+      <div class="brow">
+        <div class="blbl">Offshore wind</div>
+        <div class="btrk"><div class="bfil bf2" id="bar3">$0.08</div></div>
+      </div>
+      <div class="brow">
+        <div class="blbl">FathomX target</div>
+        <div class="btrk"><div class="bfil bf2" id="bar4">$0.05</div></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- 3 FACTS -->
-<section class="facts" id="why">
+<section class="facts">
   <div class="facts-inner">
     <h2 data-reveal>Why this.<br><em>Why now.</em></h2>
     <div class="facts-grid">
       <div class="fc" data-reveal>
         <div class="fc-n">01</div>
         <h3>Every piece already exists.</h3>
-        <p>Floating turbines operate commercially off Norway. Submarine cables carry a gigawatt 720 kilometers across the North Sea. Offshore structures survive Category 5 hurricanes. The components are proven. Nobody has assembled them beyond the 200-mile line.</p>
+        <p>Floating turbines operate commercially off Norway. Submarine cables carry a gigawatt 720 km across the North Sea. Offshore structures survive Category 5 hurricanes. The components are proven. Nobody has assembled them beyond the 200-mile line.</p>
       </div>
       <div class="fc" data-reveal data-d="1">
         <div class="fc-n">02</div>
         <h3>Half the world pays too much for power.</h3>
-        <p>Island nations run diesel generators at $0.40/kWh. Fast-growing economies import energy from neighbors they don't fully trust. A 25-year supply agreement with no geopolitical strings changes the calculation permanently.</p>
+        <p>Island nations run diesel generators at $0.40/kWh. Fast-growing economies import energy from neighbors they don't fully trust. A 25-year supply agreement with no geopolitical strings attached changes the calculation permanently.</p>
       </div>
       <div class="fc" data-reveal data-d="2">
         <div class="fc-n">03</div>
@@ -339,40 +511,6 @@
     </div>
   </div>
 </section>
-
-<!-- PHOTO ROW -->
-<div class="photo-row">
-  <div class="pr-cell">
-    <img src="/assets/images/solar-aerial-view.jpg" alt="Aerial solar" loading="lazy" />
-    <div class="pr-cap">
-      <h3>Energy, delivered.</h3>
-      <p>Submarine cable from platform to national grid. Same technology that links the UK to Norway.</p>
-    </div>
-  </div>
-  <div class="pr-cell" style="background: var(--navy3)">
-    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:3rem;">
-      <div>
-        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(212,151,74,0.6);margin-bottom:1rem">Also on the platform</div>
-        <div style="display:flex;flex-direction:column;gap:1.25rem">
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.3rem">Compute at sea</div>
-            <div style="font-size:0.85rem;color:rgba(255,255,255,0.42);line-height:1.6">Servers running on clean, cheap offshore power. No lease. No jurisdiction.</div>
-          </div>
-          <div style="height:1px;background:var(--line)"></div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.3rem">Food from open water</div>
-            <div style="font-size:0.85rem;color:rgba(255,255,255,0.42);line-height:1.6">Offshore aquaculture in the platform's exclusion zone. A third revenue stream.</div>
-          </div>
-          <div style="height:1px;background:var(--line)"></div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.3rem">Self-sufficient crew</div>
-            <div style="font-size:0.85rem;color:rgba(255,255,255,0.42);line-height:1.6">Desalination, aquafarming, solar. Eventually no supply ship needed.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- JOIN -->
 <section class="join" id="join">
@@ -430,17 +568,37 @@
 <script>
 /* NAV */
 (function(){
-  var nav=document.getElementById('nav');
-  function t(){ nav.classList.toggle('up', window.scrollY>50); }
-  window.addEventListener('scroll',t,{passive:true}); t();
+  var nav = document.getElementById('nav');
+  var announce = document.querySelector('.announce');
+  var ticker = document.querySelector('.ticker');
+  var offset = (announce ? announce.offsetHeight : 0) + (ticker ? ticker.offsetHeight : 0);
+  function t(){ nav.classList.toggle('up', window.scrollY > offset + 10); }
+  window.addEventListener('scroll', t, {passive:true}); t();
 })();
 
 /* REVEAL */
 (function(){
-  var io=new IntersectionObserver(function(entries){
+  var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
   },{threshold:0.1});
   document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+})();
+
+/* CHART BARS */
+(function(){
+  var targets = [{id:'bar1',w:100},{id:'bar2',w:45},{id:'bar3',w:20},{id:'bar4',w:12}];
+  var animated = false;
+  var io = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting && !animated){
+      animated = true;
+      targets.forEach(function(t){
+        var el = document.getElementById(t.id);
+        if(el) setTimeout(function(){ el.style.width = t.w + '%'; }, 200);
+      });
+    }
+  },{threshold:0.3});
+  var sec = document.querySelector('.math-sec');
+  if(sec) io.observe(sec);
 })();
 
 /* VIDEO STITCH */
@@ -467,9 +625,7 @@
     vids[cur].play().catch(function(){});
     pills.forEach(function(p,i){ p.classList.remove('active','done'); if(i<cur) p.classList.add('done'); });
     pills[cur].classList.add('active');
-    tag.style.opacity   = '0';
-    title.style.opacity = '0';
-    sub.style.opacity   = '0';
+    tag.style.opacity = title.style.opacity = sub.style.opacity = '0';
     setTimeout(function(){
       tag.textContent   = CLIPS[cur].tag;
       title.innerHTML   = CLIPS[cur].title;
@@ -493,17 +649,17 @@
 
 /* FORM */
 (function(){
-  var form=document.getElementById('jForm'), btn=document.getElementById('fBtn'), win=document.getElementById('fWin');
+  var form = document.getElementById('jForm'), btn = document.getElementById('fBtn'), win = document.getElementById('fWin');
   if(!form) return;
   form.addEventListener('submit', async function(e){
-    e.preventDefault(); btn.disabled=true; btn.textContent='Sending…';
-    var data=Object.fromEntries(new FormData(form));
+    e.preventDefault(); btn.disabled = true; btn.textContent = 'Sending…';
+    var data = Object.fromEntries(new FormData(form));
     try{
-      var res=await fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-      var json=await res.json();
-      if(json.success){ form.style.display='none'; win.style.display='block'; }
-      else{ btn.disabled=false; btn.textContent='Count me in →'; alert(json.message||'Something went wrong.'); }
-    }catch(err){ btn.disabled=false; btn.textContent='Count me in →'; alert('Network error. Please try again.'); }
+      var res  = await fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      var json = await res.json();
+      if(json.success){ form.style.display = 'none'; win.style.display = 'block'; }
+      else{ btn.disabled = false; btn.textContent = 'Count me in →'; alert(json.message || 'Something went wrong.'); }
+    }catch(err){ btn.disabled = false; btn.textContent = 'Count me in →'; alert('Network error. Please try again.'); }
   });
 })();
 </script>
