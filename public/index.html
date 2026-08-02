@@ -435,7 +435,7 @@
       <p>The technology exists. Floating turbines. Submarine cables. Offshore structures that survive Category 5 storms. The only thing missing is someone willing to anchor in waters that belong to everyone and no one.</p>
     </div>
     <div class="intro-photo" data-reveal data-d="2">
-      <img src="/assets/images/solar-aerial-view.jpg" alt="Aerial view of solar infrastructure" loading="lazy" />
+      <img src="/assets/images/offshore-turbines.jpg" alt="Wind turbines at sunset" loading="lazy" />
     </div>
   </div>
 </div>
@@ -471,12 +471,12 @@
   </div>
   <div class="gal-grid">
     <div class="gi" data-reveal>
-      <img src="/assets/images/solar-aerial-view.jpg" alt="Aerial solar infrastructure" loading="lazy" />
-      <div class="gi-cap">Aerial view — solar infrastructure at scale</div>
+      <img src="/assets/images/ocean-platform.jpg" alt="Open ocean depth" loading="lazy" />
+      <div class="gi-cap">The resource — 110 million square miles of open ocean</div>
     </div>
     <div class="gi" data-reveal data-d="1">
-      <img src="/assets/images/sunrise-poster.jpg" alt="Open ocean horizon" loading="lazy" />
-      <div class="gi-cap">The horizon — 380 miles of open water</div>
+      <img src="/assets/images/ocean-horizon.jpg" alt="Open sky from altitude" loading="lazy" />
+      <div class="gi-cap">Above it — the wind resource is permanent and unclaimed</div>
     </div>
   </div>
 </section>
@@ -721,17 +721,19 @@
 (function(){
   var targets = [{id:'bar1',w:100},{id:'bar2',w:45},{id:'bar3',w:20},{id:'bar4',w:12}];
   var animated = false;
+  function animate(){
+    if(animated) return; animated = true;
+    targets.forEach(function(t, i){
+      var el = document.getElementById(t.id);
+      if(el) setTimeout(function(){ el.style.width = t.w + '%'; }, 200 + i * 80);
+    });
+  }
+  var sec = document.querySelector('.chart-panel');
+  if(!sec) return;
   var io = new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting && !animated){
-      animated = true;
-      targets.forEach(function(t){
-        var el = document.getElementById(t.id);
-        if(el) setTimeout(function(){ el.style.width = t.w + '%'; }, 200);
-      });
-    }
-  },{threshold:0.3});
-  var sec = document.querySelector('.math-sec');
-  if(sec) io.observe(sec);
+    if(entries[0].isIntersecting) animate();
+  },{threshold:0.1, rootMargin:'0px 0px -50px 0px'});
+  io.observe(sec);
 })();
 
 /* VIDEO STITCH */
