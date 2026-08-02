@@ -3,563 +3,469 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FathomX — Power Beyond Borders</title>
-  <meta name="description" content="FathomX builds energy infrastructure in international waters — no jurisdiction, no landlord, no expiry." />
-  <meta property="og:title" content="FathomX — Power Beyond Borders" />
-  <meta property="og:description" content="We're building energy infrastructure in international waters. No nation owns the open ocean." />
+  <title>FathomX — Energy from International Waters</title>
+  <meta name="description" content="We're building offshore renewable energy infrastructure in international waters. No permits. No landlord. No expiry date." />
+  <meta property="og:title" content="FathomX — Energy from International Waters" />
+  <meta property="og:description" content="The open ocean generates more energy every day than humanity uses. Nobody has harvested it. We're going to." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fathomx.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --ink:   #080f18;
-      --ink2:  #0c1822;
-      --ink3:  #13212f;
-      --muted: #6a7d90;
-      --line:  #1a2e40;
-      --cyan:  #00c8e0;
-      --amber: #f5a623;
-      --white: #ffffff;
-      --max:   1100px;
-      --r:     10px;
+      --deep:   #060d14;
+      --navy:   #0a1520;
+      --navy2:  #0e1d2a;
+      --navy3:  #132435;
+      --muted:  #5a7080;
+      --line:   #162535;
+      --amber:  #D4974A;
+      --amber2: #c08030;
+      --gold:   #f0c060;
+      --white:  #ffffff;
+      --warm:   rgba(212,151,74,0.08);
+      --max:    1080px;
+      --r:      10px;
     }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--ink);
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--deep);
       color: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
+    h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, serif; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
 
-    /* ── REVEAL ANIMATION ── */
+    /* ── REVEAL ── */
     [data-reveal] {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
     }
-    [data-reveal].visible {
-      opacity: 1; transform: translateY(0);
-    }
-    [data-reveal="delay-1"] { transition-delay: 0.1s; }
-    [data-reveal="delay-2"] { transition-delay: 0.2s; }
-    [data-reveal="delay-3"] { transition-delay: 0.3s; }
+    [data-reveal].visible { opacity: 1; transform: translateY(0); }
+    [data-reveal][data-d="1"] { transition-delay: 0.08s; }
+    [data-reveal][data-d="2"] { transition-delay: 0.18s; }
+    [data-reveal][data-d="3"] { transition-delay: 0.3s; }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.25rem 2.5rem;
-      background: rgba(8,15,24,0.0);
+      padding: 0 3rem; height: 62px;
+      background: rgba(6,13,20,0);
       backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
       border-bottom: 1px solid transparent;
-      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+      transition: background 0.5s, backdrop-filter 0.5s, border-color 0.5s;
     }
-    nav.scrolled {
-      background: rgba(8,15,24,0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom-color: rgba(255,255,255,0.05);
+    nav.up {
+      background: rgba(6,13,20,0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom-color: rgba(255,255,255,0.04);
     }
     .nav-logo {
-      font-size: 1.2rem; font-weight: 800; letter-spacing: -0.025em;
-      color: var(--white); text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--white);
     }
-    .nav-logo span { color: var(--cyan); }
+    .nav-logo em { font-style: italic; color: var(--amber); }
     .nav-cta {
-      background: var(--cyan); color: var(--ink);
-      padding: 0.5rem 1.25rem; border-radius: 6px;
-      font-weight: 700; font-size: 0.875rem;
-      text-decoration: none; transition: background 0.2s, transform 0.15s;
+      background: var(--amber); color: var(--deep);
+      padding: 0.5rem 1.3rem; border-radius: 6px;
+      font-weight: 700; font-size: 0.82rem; letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
     }
-    .nav-cta:hover { background: #1adff5; transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--gold); transform: translateY(-1px); }
 
     /* ── HERO ── */
     .hero {
       position: relative; min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; overflow: hidden;
-      padding: 8rem 2rem 7rem;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+      padding: 0 3rem 6rem;
     }
-    .hero-bg {
+    .hero-ocean {
       position: absolute; inset: 0; z-index: 0;
-      background: var(--ink);
-      animation: bgDrift 18s ease-in-out infinite alternate;
+      background:
+        radial-gradient(ellipse 120% 50% at 50% 105%, rgba(0,55,100,0.7) 0%, rgba(0,30,60,0.3) 45%, transparent 70%),
+        radial-gradient(ellipse 80% 30% at 15% 80%, rgba(212,151,74,0.07) 0%, transparent 60%),
+        linear-gradient(to bottom, #060d14 0%, #070f18 60%, #091420 100%);
     }
-    @keyframes bgDrift {
-      0%   { background: radial-gradient(ellipse 100% 60% at 50% 110%, rgba(0,65,110,0.55) 0%, transparent 60%), var(--ink); }
-      50%  { background: radial-gradient(ellipse 110% 65% at 45% 115%, rgba(0,50,95,0.5) 0%, transparent 65%), var(--ink); }
-      100% { background: radial-gradient(ellipse 95% 55% at 55% 105%, rgba(0,80,130,0.6) 0%, transparent 60%), var(--ink); }
+    .hero-stars {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
     }
     .hero-horizon {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(0,200,224,0.5) 50%, transparent 100%);
+      background: linear-gradient(90deg, transparent, rgba(212,151,74,0.35) 50%, transparent);
     }
-    #heroCanvas {
-      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    .hero-body {
+      position: relative; z-index: 3;
+      max-width: var(--max);
+      width: 100%;
     }
-    .hero-content { position: relative; z-index: 3; max-width: 880px; }
-
-    .hero-kicker {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(0,200,224,0.07); border: 1px solid rgba(0,200,224,0.18);
-      border-radius: 100px; padding: 0.35rem 1rem;
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(0,200,224,0.85); margin-bottom: 2.25rem;
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: 1.4rem; opacity: 0.85;
     }
-    .hero-kicker::before {
-      content: ''; width: 5px; height: 5px; border-radius: 50%;
-      background: var(--cyan); animation: blink 2.8s ease infinite;
+    .hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--amber); }
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900; line-height: 1.02;
+      letter-spacing: -0.03em; color: var(--white);
+      max-width: 780px; margin-bottom: 1.5rem;
     }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-
-    .hero h1 {
-      font-size: clamp(3.2rem, 8vw, 6.5rem);
-      font-weight: 900; letter-spacing: -0.048em; line-height: 0.98;
-      margin-bottom: 1.75rem;
-    }
-    .hero h1 em { font-style: normal; color: var(--cyan); }
-
+    h1 em { font-style: italic; color: var(--amber); }
     .hero-sub {
-      font-size: clamp(1rem, 1.8vw, 1.15rem); font-weight: 400;
-      color: rgba(255,255,255,0.55); max-width: 520px;
-      margin: 0 auto 3rem; line-height: 1.8;
+      font-size: 1.05rem; color: rgba(255,255,255,0.5);
+      max-width: 460px; line-height: 1.8;
+      margin-bottom: 2.75rem;
     }
-
-    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--cyan); color: var(--ink);
+    .hero-btn {
+      display: inline-block;
+      background: var(--amber); color: var(--deep);
       padding: 0.9rem 2.25rem; border-radius: 8px;
-      font-weight: 800; font-size: 1rem;
-      text-decoration: none; transition: all 0.2s;
-      letter-spacing: -0.01em;
+      font-weight: 700; font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
     }
-    .btn-primary:hover { background: #1adff5; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,200,224,0.3); }
-    .btn-ghost {
-      background: transparent; color: rgba(255,255,255,0.65);
-      padding: 0.9rem 2.25rem; border-radius: 8px;
-      font-weight: 500; font-size: 1rem;
-      text-decoration: none; border: 1px solid rgba(255,255,255,0.14);
-      transition: all 0.2s;
+    .hero-btn:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(212,151,74,0.25); }
+    .hero-stats {
+      display: flex; gap: 3.5rem; margin-top: 4.5rem;
+      padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.07);
+      flex-wrap: wrap;
     }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.35); color: var(--white); }
+    .hstat .n {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem; font-weight: 700; color: var(--white);
+      line-height: 1; letter-spacing: -0.02em;
+    }
+    .hstat .n em { color: var(--amber); font-style: normal; }
+    .hstat .l { font-size: 0.71rem; color: rgba(255,255,255,0.32); margin-top: 5px; letter-spacing: 0.04em; }
 
-    .hero-facts {
-      display: flex; justify-content: center; gap: 4.5rem;
-      margin-top: 5.5rem; flex-wrap: wrap;
-    }
-    .hero-fact { text-align: center; }
-    .hf-num {
-      font-size: 2.5rem; font-weight: 900; color: var(--white);
-      letter-spacing: -0.045em; display: block; line-height: 1;
-    }
-    .hf-num em { font-style: normal; color: var(--cyan); }
-    .hf-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.4rem; display: block; }
-
-    /* scroll hint */
-    .scroll-hint {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-    }
-    .scroll-hint span { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
-    .scroll-hint-line {
-      width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent);
-      animation: scrollPulse 2s ease infinite;
-    }
-    @keyframes scrollPulse { 0%,100%{transform:scaleY(1);opacity:0.4} 50%{transform:scaleY(1.3);opacity:0.9} }
-
-    /* ── WAVE SVG ── */
-    .wave-div { line-height: 0; }
-    .wave-div svg { display: block; width: 100%; }
-
-    /* ── MANIFESTO ── */
-    .manifesto { background: var(--ink2); padding: 7rem 2rem; }
-    .manifesto-inner { max-width: 760px; margin: 0 auto; text-align: center; }
-
-    .mf-coords {
-      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(0,200,224,0.45); margin-bottom: 2.5rem; font-weight: 500;
-    }
-    .mf-quote {
-      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
-      font-weight: 300; line-height: 1.65;
-      color: rgba(255,255,255,0.78);
-      font-style: italic;
-    }
-    .mf-quote strong { font-weight: 800; font-style: normal; color: var(--white); }
-
-    .mf-rule {
-      width: 1px; height: 48px;
-      background: linear-gradient(to bottom, var(--cyan), transparent);
-      margin: 2.75rem auto;
-    }
-    .mf-close {
-      font-size: 1rem; color: rgba(255,255,255,0.45);
-      font-weight: 400; line-height: 1.8;
-      max-width: 600px; margin: 0 auto;
-    }
-    .mf-close strong { font-weight: 600; color: rgba(255,255,255,0.72); }
-
-    /* ── PLATFORM ── */
-    .platform { background: var(--ink); padding: 7rem 2rem; }
-    .platform-header { max-width: 560px; margin-bottom: 5rem; }
-    .platform-header h2 {
-      font-size: clamp(2rem, 4.5vw, 3.25rem);
-      font-weight: 900; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1rem;
-    }
-    .platform-header p { font-size: 1.05rem; color: rgba(255,255,255,0.5); line-height: 1.75; }
-
-    .pc-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-      background: var(--line); border-radius: var(--r); overflow: hidden;
-    }
-    .pc {
-      background: var(--ink2); padding: 2.25rem 2rem;
-      position: relative; transition: background 0.25s;
-    }
-    .pc:hover { background: var(--ink3); }
-    .pc-num {
-      font-size: 3.5rem; font-weight: 900; letter-spacing: -0.06em;
-      color: rgba(0,200,224,0.12); line-height: 1; margin-bottom: 1.25rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .pc h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
-    .pc p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
-    .pc-tag {
-      display: inline-block; margin-top: 1.25rem;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--cyan); opacity: 0.7;
-    }
-
-    .platform-bridge {
-      display: flex; align-items: center; gap: 1.25rem;
-      margin: 2.5rem 0;
-    }
-    .pb-line { flex: 1; height: 1px; background: var(--line); }
-    .pb-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted); white-space: nowrap;
-    }
-
-    /* ── VISION ── */
-    .vision { background: var(--ink2); padding: 7rem 2rem; }
-    .vision-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
-    }
-    .vision-left h2 {
-      font-size: clamp(2.25rem, 5vw, 4rem);
-      font-weight: 900; letter-spacing: -0.045em; line-height: 0.98;
+    /* ── FACT ── */
+    .fact { background: var(--navy); padding: 7rem 3rem; }
+    .fact-inner { max-width: 780px; margin: 0 auto; }
+    .fact-inner blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.35rem);
+      font-weight: 400; font-style: italic;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.55; letter-spacing: -0.01em;
       margin-bottom: 2rem;
     }
-    .vision-left h2 em { font-style: normal; color: var(--cyan); }
-    .vision-left p {
-      font-size: 1.05rem; color: rgba(255,255,255,0.55);
-      line-height: 1.8; margin-bottom: 1.25rem;
+    .fact-inner blockquote::before {
+      content: '\201C';
+      font-size: 4.5rem; color: var(--amber); line-height: 0;
+      vertical-align: -1.5rem; margin-right: 0.1em; opacity: 0.5;
     }
+    .fact-inner blockquote strong { font-weight: 700; font-style: normal; color: var(--white); }
+    .fact-rule { width: 40px; height: 1px; background: var(--amber); opacity: 0.5; margin-bottom: 2rem; }
+    .fact-follow {
+      font-size: 1rem; color: rgba(255,255,255,0.42); line-height: 1.8;
+    }
+    .fact-follow strong { color: rgba(255,255,255,0.65); font-weight: 600; }
 
-    .vision-right { display: flex; flex-direction: column; }
-    .vp {
-      padding: 2rem 0; border-bottom: 1px solid var(--line);
+    /* ── HOW ── */
+    .how { background: var(--deep); padding: 7rem 3rem; }
+    .how-inner { max-width: var(--max); margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(212,151,74,0.6); margin-bottom: 0.75rem;
     }
-    .vp:first-child { padding-top: 0; }
-    .vp:last-child { border-bottom: none; }
-    .vp h4 {
-      font-size: 1.15rem; font-weight: 800; letter-spacing: -0.025em;
-      margin-bottom: 0.65rem; line-height: 1.25; color: var(--white);
+    h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.15;
+      margin-bottom: 1.25rem;
     }
-    .vp p { font-size: 0.92rem; color: rgba(255,255,255,0.5); line-height: 1.75; }
+    .how-lead { font-size: 1.05rem; color: rgba(255,255,255,0.48); line-height: 1.8; max-width: 520px; margin-bottom: 4.5rem; }
+
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-radius: var(--r); overflow: hidden; margin-bottom: 1px; }
+    .hw {
+      background: var(--navy); padding: 2.25rem 2rem;
+      transition: background 0.2s;
+    }
+    .hw:hover { background: var(--navy2); }
+    .hw-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900; color: rgba(212,151,74,0.15);
+      line-height: 1; margin-bottom: 1.25rem; letter-spacing: -0.03em;
+    }
+    .hw h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.65rem; letter-spacing: -0.02em; font-family: 'Inter', sans-serif; }
+    .hw p { font-size: 0.9rem; color: rgba(255,255,255,0.46); line-height: 1.7; }
+
+    .how-arrow {
+      text-align: center; padding: 1.25rem 0;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(212,151,74,0.4);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .how-arrow::before, .how-arrow::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+    .how-grid.out .hw h3 { color: var(--amber); }
+
+    /* ── WHY ── */
+    .why { background: var(--navy); padding: 7rem 3rem; }
+    .why-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .why-left h2 { margin-bottom: 1.5rem; }
+    .why-left h2 em { font-style: italic; color: var(--amber); }
+    .why-left p { font-size: 1.02rem; color: rgba(255,255,255,0.5); line-height: 1.82; margin-bottom: 1.1rem; }
+    .why-right { display: flex; flex-direction: column; }
+    .wp {
+      padding: 1.85rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .wp:first-child { padding-top: 0; }
+    .wp:last-child { border-bottom: none; padding-bottom: 0; }
+    .wp h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700; font-style: italic;
+      margin-bottom: 0.55rem; line-height: 1.25; color: var(--white);
+    }
+    .wp p { font-size: 0.88rem; color: rgba(255,255,255,0.44); line-height: 1.75; }
 
     /* ── JOIN ── */
-    .join { background: var(--ink); padding: 7rem 2rem 8rem; }
-    .join-inner { max-width: 660px; margin: 0 auto; }
-    .join-header { text-align: center; margin-bottom: 3.5rem; }
-    .join-header h2 {
-      font-size: clamp(2rem, 4.5vw, 3.25rem);
-      font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1rem;
-    }
-    .join-header p {
-      font-size: 1.05rem; color: rgba(255,255,255,0.5); line-height: 1.75;
-      max-width: 500px; margin: 0 auto;
-    }
-    .join-roles {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-      justify-content: center; margin-top: 1.5rem;
-    }
-    .join-role {
-      font-size: 0.78rem; padding: 0.3rem 0.8rem; border-radius: 100px;
-      border: 1px solid var(--line); color: var(--muted);
-      font-weight: 600; letter-spacing: 0.02em;
-    }
+    .join { background: var(--deep); padding: 7rem 3rem 8rem; }
+    .join-inner { max-width: 640px; margin: 0 auto; }
+    .join-hd { margin-bottom: 3.5rem; }
+    .join-hd h2 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 1.1rem; }
+    .join-hd h2 em { font-style: italic; color: var(--amber); }
+    .join-hd p { font-size: 1.02rem; color: rgba(255,255,255,0.46); line-height: 1.8; max-width: 480px; }
 
-    .join-form {
-      background: var(--ink2); border: 1px solid var(--line);
-      border-radius: 14px; padding: 2.5rem; text-align: left;
+    .join-form-wrap {
+      background: var(--navy); border: 1px solid var(--line);
+      border-radius: 14px; padding: 2.5rem;
     }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.25rem; }
-    .form-group label {
-      font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.5);
-      text-transform: uppercase; letter-spacing: 0.07em;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: var(--ink3); border: 1px solid var(--line);
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fg { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.2rem; }
+    .fg label { font-size: 0.71rem; font-weight: 700; color: rgba(255,255,255,0.42); text-transform: uppercase; letter-spacing: 0.07em; }
+    .fg input, .fg select, .fg textarea {
+      background: var(--navy3); border: 1px solid var(--line);
       border-radius: 8px; padding: 0.75rem 1rem;
-      color: var(--white); font-size: 0.95rem; font-family: inherit;
+      color: var(--white); font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
       outline: none; transition: border-color 0.2s, box-shadow 0.2s;
       -webkit-appearance: none; appearance: none;
     }
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a7d90' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    .fg select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7080' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 1rem center;
       padding-right: 2.5rem; cursor: pointer;
     }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(106,125,144,0.7); }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: rgba(0,200,224,0.5);
-      box-shadow: 0 0 0 3px rgba(0,200,224,0.08);
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(90,112,128,0.7); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: rgba(212,151,74,0.45);
+      box-shadow: 0 0 0 3px rgba(212,151,74,0.07);
     }
-    .form-group select option { background: var(--ink3); }
-    .form-group textarea { resize: vertical; min-height: 90px; }
+    .fg select option { background: var(--navy3); }
+    .fg textarea { resize: vertical; min-height: 90px; }
 
-    .form-consent {
+    .f-consent {
       display: flex; align-items: flex-start; gap: 0.75rem;
       margin-bottom: 1.5rem; cursor: pointer;
     }
-    .form-consent input[type="checkbox"] {
-      margin-top: 2px; flex-shrink: 0;
-      accent-color: var(--cyan); width: 16px; height: 16px; cursor: pointer;
-    }
-    .form-consent span { font-size: 0.83rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
+    .f-consent input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--amber); width: 15px; height: 15px; }
+    .f-consent span { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
 
-    .form-submit {
-      width: 100%; background: var(--cyan); color: var(--ink);
+    .f-submit {
+      width: 100%; background: var(--amber); color: var(--deep);
       border: none; border-radius: 8px; padding: 1.05rem;
-      font-size: 1rem; font-weight: 800; cursor: pointer;
-      transition: all 0.2s; font-family: inherit; letter-spacing: -0.01em;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      font-family: 'Inter', sans-serif; letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
     }
-    .form-submit:hover { background: #1adff5; transform: translateY(-1px); box-shadow: 0 10px 36px rgba(0,200,224,0.28); }
-    .form-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+    .f-submit:hover { background: var(--gold); transform: translateY(-1px); box-shadow: 0 10px 36px rgba(212,151,74,0.22); }
+    .f-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
 
-    .form-success { display: none; text-align: center; padding: 3rem 0; }
-    .form-success .check {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(0,200,224,0.08); border: 1.5px solid rgba(0,200,224,0.5);
+    .f-success { display: none; text-align: center; padding: 2.5rem 0; }
+    .f-success .check {
+      width: 54px; height: 54px; border-radius: 50%;
+      background: rgba(212,151,74,0.08); border: 1.5px solid rgba(212,151,74,0.4);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem; margin: 0 auto 1.5rem; color: var(--cyan);
+      font-size: 1.25rem; margin: 0 auto 1.25rem; color: var(--amber);
     }
-    .form-success h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.6rem; letter-spacing: -0.025em; }
-    .form-success p { color: rgba(255,255,255,0.45); font-size: 0.95rem; line-height: 1.7; }
+    .f-success h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.02em;
+    }
+    .f-success p { color: rgba(255,255,255,0.42); font-size: 0.92rem; line-height: 1.7; }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--ink2); border-top: 1px solid var(--line);
-      padding: 2.5rem 2rem; text-align: center;
+      background: var(--navy); border-top: 1px solid var(--line);
+      padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
     }
-    .footer-logo { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
-    .footer-logo span { color: var(--cyan); }
-    .footer-sub { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--white);
+    }
+    .footer-logo em { font-style: italic; color: var(--amber); }
+    .footer-sub { font-size: 0.78rem; color: var(--muted); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
-      .vision-grid { grid-template-columns: 1fr; gap: 3.5rem; }
-      .pc-grid { grid-template-columns: 1fr; }
-      .hero-facts { gap: 3rem; }
+      .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .how-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2.5rem; }
     }
     @media (max-width: 640px) {
-      nav { padding: 1rem 1.5rem; }
-      .manifesto { padding: 5rem 1.5rem; }
-      .platform, .vision, .join { padding: 5rem 1.5rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .join-form { padding: 1.75rem; }
-      .hero-facts { gap: 2rem; }
-      .platform-header { margin-bottom: 3.5rem; }
+      nav { padding: 0 1.5rem; }
+      .hero { padding: 0 1.5rem 5rem; }
+      .fact, .how, .why, .join { padding: 5rem 1.5rem; }
+      .frow { grid-template-columns: 1fr; }
+      .join-form-wrap { padding: 1.75rem; }
+      footer { padding: 2rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="mainNav">
-  <a href="#" class="nav-logo">Fathom<span>X</span></a>
+<nav id="nav">
+  <div class="nav-logo">Fathom<em>X</em></div>
   <a href="#join" class="nav-cta">Get involved</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-ocean"></div>
+  <canvas class="hero-stars" id="stars"></canvas>
   <div class="hero-horizon"></div>
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-kicker">High seas · No jurisdiction</div>
-    <h1>No nation owns<br>the <em>open ocean.</em></h1>
+  <div class="hero-body">
+    <div class="hero-eyebrow">International waters</div>
+    <h1>The ocean has been<br>generating power<br>for <em>four billion years.</em></h1>
     <p class="hero-sub">
-      We're building the first energy infrastructure in international waters —
-      harvesting what the sun, the wind, and the sea produce every second,
-      then sending it back to civilization.
+      Nobody has ever harvested it.<br>
+      We're going to change that.
     </p>
-    <div class="hero-actions">
-      <a href="#join" class="btn-primary">Join the mission</a>
-      <a href="#manifesto" class="btn-ghost">Read why</a>
-    </div>
-    <div class="hero-facts">
-      <div class="hero-fact">
-        <span class="hf-num"><em>71</em>%</span>
-        <span class="hf-label">Ocean. Untouched.</span>
+    <a href="#join" class="hero-btn">Join us</a>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="n"><em>71</em>%</div>
+        <div class="l">of Earth is ocean</div>
       </div>
-      <div class="hero-fact">
-        <span class="hf-num"><em>0</em></span>
-        <span class="hf-label">Incumbents in this space</span>
+      <div class="hstat">
+        <div class="n"><em>0</em></div>
+        <div class="l">commercial energy platforms in international waters</div>
       </div>
-      <div class="hero-fact">
-        <span class="hf-num"><em>∞</em></span>
-        <span class="hf-label">Years of runway</span>
+      <div class="hstat">
+        <div class="n"><em>∞</em></div>
+        <div class="l">no permit required</div>
       </div>
     </div>
-  </div>
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-hint-line"></div>
   </div>
 </section>
 
-<!-- WAVE -->
-<div class="wave-div" style="background:var(--ink2)">
-  <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="height:64px">
-    <path d="M0,20 C200,55 400,5 600,28 C800,52 1000,8 1200,30 C1320,45 1400,18 1440,28 L1440,0 L0,0 Z" fill="#080f18"/>
-    <path d="M0,36 C240,60 480,12 720,36 C960,60 1200,16 1440,36 L1440,64 L0,64 Z" fill="#0c1822"/>
-  </svg>
-</div>
-
-<!-- MANIFESTO -->
-<section class="manifesto" id="manifesto">
-  <div class="manifesto-inner">
-    <div class="mf-coords" data-reveal>13°N · 142°E · 380 nautical miles from the nearest coast</div>
-    <p class="mf-quote" data-reveal="delay-1">
-      <strong>Seventy-one percent of this planet is ocean.</strong>
+<!-- FACT -->
+<section class="fact">
+  <div class="fact-inner">
+    <blockquote data-reveal>
+      Seventy-one percent of this planet is ocean.
+      <strong>It belongs to no nation.</strong>
       It receives more sunlight than any desert.
-      Its winds blow every hour of every day.
-      Its waves carry energy that has crossed entire ocean basins undisturbed.
-      And it belongs to no one.
-    </p>
-    <div class="mf-rule"></div>
-    <p class="mf-close" data-reveal>
-      The North Sea. The Persian Gulf. The Bass Strait.
-      <strong>Every offshore energy project in history has been built inside someone's waters,
-      under someone's rules, at someone else's pleasure.</strong>
-      The open ocean — 45% of the Earth's surface — has never been used to
-      generate energy at scale. Not because it can't be.
-      Because nobody has built there yet.
+      Its winds blow day and night without stopping.
+      Its waves carry energy that has traveled three thousand miles undisturbed.
+    </blockquote>
+    <div class="fact-rule" data-reveal></div>
+    <p class="fact-follow" data-reveal>
+      The North Sea, the Persian Gulf, the Bass Strait —
+      <strong>every offshore energy project in history has been built inside someone's waters,
+      under someone's rules, revocable by someone's government.</strong>
+      The open ocean has none of that.
+      It has never been used to generate energy at commercial scale.
+      Not because it can't be. Because nobody has gone there yet.
     </p>
   </div>
 </section>
 
-<!-- PLATFORM -->
-<section class="platform" id="platform">
-  <div class="container" style="max-width:var(--max);margin:0 auto">
-    <div class="platform-header" data-reveal>
+<!-- HOW -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div data-reveal>
+      <div class="section-eyebrow">The platform</div>
       <h2>Collect. Convert. Deliver.</h2>
-      <p>
-        A floating platform anchored in international waters harvests
-        from every direction — sun, wind, wave — and sends the output
-        back through a submarine cable to any grid willing to receive it.
+      <p class="how-lead">
+        A floating platform anchored in international waters. Three energy sources. One cable back to the mainland.
       </p>
     </div>
 
-    <div class="pc-grid" data-reveal>
-      <div class="pc">
-        <div class="pc-num">01</div>
+    <div class="how-grid" data-reveal>
+      <div class="hw">
+        <div class="hw-n">01</div>
         <h3>Solar</h3>
-        <p>The open ocean sits beneath some of the highest solar irradiance on Earth — unobstructed by terrain, free of the permitting battles that consume years of land-based development. The sun doesn't have an opinion about jurisdiction.</p>
-        <span class="pc-tag">Energy source</span>
+        <p>The open ocean sits beneath some of the highest solar irradiance on the planet. No terrain blocking it. No one to ask permission. The sun shows up whether you have permits or not.</p>
       </div>
-      <div class="pc">
-        <div class="pc-num">02</div>
+      <div class="hw">
+        <div class="hw-n">02</div>
         <h3>Wind</h3>
-        <p>The trade winds that guided centuries of navigation are the most consistent wind resource on the planet. Floating turbines — proven commercially since 2017 — turn that consistency into reliable, predictable power far beyond any coastline claim.</p>
-        <span class="pc-tag">Energy source</span>
+        <p>The trade winds that guided sailors across oceans for five hundred years blow 24 hours a day. Floating turbines — proven at commercial scale since 2017 — turn them into electricity far beyond any coast.</p>
       </div>
-      <div class="pc">
-        <div class="pc-num">03</div>
+      <div class="hw">
+        <div class="hw-n">03</div>
         <h3>Wave</h3>
-        <p>Swell that has traveled three thousand miles arrives at the hull carrying mechanical energy. Wave converters integrated into the mooring system capture it — a source that doesn't pause when the sun sets or the wind softens.</p>
-        <span class="pc-tag">Energy source</span>
+        <p>Swell that crossed three thousand miles of open ocean arrives at the hull with energy still in it. Wave converters built into the mooring capture what doesn't stop when the sun sets.</p>
       </div>
     </div>
 
-    <div class="platform-bridge">
-      <div class="pb-line"></div>
-      <span class="pb-label">Transmitted to civilization</span>
-      <div class="pb-line"></div>
-    </div>
+    <div class="how-arrow" data-reveal>sent back to civilization via submarine cable</div>
 
-    <div class="pc-grid" data-reveal="delay-1">
-      <div class="pc">
-        <div class="pc-num">A</div>
+    <div class="how-grid out" data-reveal>
+      <div class="hw">
+        <div class="hw-n">A</div>
         <h3>Power to the mainland</h3>
-        <p>A submarine cable carries energy from the platform to a national grid. The same technology that already links countries across the North Sea. We use it to cross a different kind of border.</p>
-        <span class="pc-tag">Primary output</span>
+        <p>The same submarine cable technology that already links the UK to Norway carries electricity from the platform to a national grid. We use it to cross a different kind of border.</p>
       </div>
-      <div class="pc">
-        <div class="pc-num">B</div>
+      <div class="hw">
+        <div class="hw-n">B</div>
         <h3>Compute at sea</h3>
-        <p>The cable that carries energy outbound carries compute inbound. Data infrastructure running on clean, unrestricted offshore power — no data center lease, no land permit, no government looking over the shoulder.</p>
-        <span class="pc-tag">Secondary output</span>
+        <p>The cable carries compute inbound. Servers running on clean, cheap, unrestricted offshore power — available to anyone, answerable to no one. A data center with no landlord and no government looking in.</p>
       </div>
-      <div class="pc">
-        <div class="pc-num">C</div>
+      <div class="hw">
+        <div class="hw-n">C</div>
         <h3>Food from open water</h3>
-        <p>The exclusion zone around the platform becomes a de facto marine reserve. Offshore aquaculture — powered by the platform, staffed by the crew — produces a third export alongside energy and compute.</p>
-        <span class="pc-tag">Secondary output</span>
+        <p>The exclusion zone around the platform becomes a marine reserve. Offshore aquaculture — running on platform power, staffed by the crew — adds a third revenue stream alongside energy and compute.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VISION -->
-<section class="vision" id="vision">
-  <div class="container" style="max-width:var(--max);margin:0 auto">
-    <div class="vision-grid">
-      <div class="vision-left" data-reveal>
-        <h2>The window<br>is open.<br><em>Not forever.</em></h2>
-        <p>
-          Every category of energy infrastructure that exists today
-          has entrenched operators, established regulations, and incumbents
-          with decades of sunk capital defending their position.
-        </p>
-        <p>
-          International waters has none of that. The legal framework is still forming.
-          The supply chain is just reaching readiness. The first company to transmit
-          power from international waters to a mainland grid will own a position
-          that cannot be replicated — because the ocean doesn't run out of space,
-          but the window for being first does close.
-        </p>
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="why-left" data-reveal>
+      <div class="section-eyebrow">Why now</div>
+      <h2>The window is open.<br><em>Not for long.</em></h2>
+      <p>
+        The technology to do this has existed for about five years.
+        The legal framework governing international waters is stable enough to operate under.
+        The demand for clean, independent energy from nations that import it is growing every year.
+      </p>
+      <p>
+        There is no incumbent. There is no one to displace.
+        The ocean is not a crowded market — it is an empty one.
+        The first company to land a cable from international waters to a mainland grid
+        owns that position for the life of the asset.
+        That asset lasts forty years.
+      </p>
+    </div>
+    <div class="why-right" data-reveal data-d="2">
+      <div class="wp">
+        <h4>Every piece already exists.</h4>
+        <p>Floating turbines operate commercially off Scotland and Norway. Submarine cables carry a gigawatt across 720 kilometers in the North Sea. Offshore structures have survived Category 5 hurricanes for decades in the Gulf of Mexico. The components are proven. Nobody has assembled them beyond the 200-mile line.</p>
       </div>
-      <div class="vision-right" data-reveal="delay-2">
-        <div class="vp">
-          <h4>Every piece already exists.</h4>
-          <p>Floating wind farms operate commercially. Submarine cables carry a gigawatt across 700 kilometers. Offshore structures have survived Category 5 weather for decades in the Gulf of Mexico. The components have been built and proven in isolation. Nobody has assembled them beyond the 200-mile line.</p>
-        </div>
-        <div class="vp">
-          <h4>Half the world pays too much for power.</h4>
-          <p>Island nations run on diesel at prices that would be a political crisis on the mainland. Fast-growing economies import energy from neighbors they don't fully trust. A clean, independent offshore energy source — with no geopolitical strings and a 25-year supply agreement — changes the calculus for both.</p>
-        </div>
-        <div class="vp">
-          <h4>The moat is the ocean itself.</h4>
-          <p>A platform in international waters can't be zoned out, subject to eminent domain, or have its license revoked by an election. The ocean is not a temporary competitive advantage. It is a permanent one. Whoever builds first keeps that position for the life of the asset — which is forty years.</p>
-        </div>
+      <div class="wp">
+        <h4>Half the world is paying too much for power.</h4>
+        <p>Island nations run generators at $0.40 per kilowatt-hour — four times what most Americans pay. Fast-growing economies import energy from neighbors they don't fully trust. A supply agreement with no geopolitical strings, 25 years at a fixed price, changes the calculation permanently.</p>
+      </div>
+      <div class="wp">
+        <h4>The ocean is the moat.</h4>
+        <p>A platform in international waters can't be zoned out, eminent-domained, or have its license pulled after an election. Nobody can undercut you on location. The competitive position is geographic — and the ocean isn't going anywhere.</p>
       </div>
     </div>
   </div>
@@ -567,193 +473,137 @@
 
 <!-- JOIN -->
 <section class="join" id="join">
-  <div class="container" style="max-width:var(--max);margin:0 auto">
-    <div class="join-inner">
-      <div class="join-header" data-reveal>
-        <h2>We're not hiring.<br>We're founding.</h2>
-        <p>
-          FathomX doesn't exist yet as a company.
-          We're looking for the people who see what we see
-          and want to build it from scratch.
-        </p>
-        <div class="join-roles">
-          <span class="join-role">Marine engineering</span>
-          <span class="join-role">Maritime law</span>
-          <span class="join-role">Project finance</span>
-          <span class="join-role">Government relations</span>
-          <span class="join-role">Offshore operations</span>
-          <span class="join-role">Compute infrastructure</span>
+  <div class="join-inner">
+    <div class="join-hd" data-reveal>
+      <h2>We're not hiring.<br><em>We're founding.</em></h2>
+      <p>
+        FathomX doesn't exist yet as a company.
+        We're looking for the people who see what we see —
+        an offshore energy engineer, a maritime lawyer, a project finance specialist,
+        someone with relationships in a government that buys power.
+        If that's you, tell us.
+      </p>
+    </div>
+    <div class="join-form-wrap" data-reveal data-d="1">
+      <form id="jForm">
+        <div class="frow">
+          <div class="fg">
+            <label>First name *</label>
+            <input type="text" name="first_name" placeholder="Ada" required />
+          </div>
+          <div class="fg">
+            <label>Last name *</label>
+            <input type="text" name="last_name" placeholder="Lovelace" required />
+          </div>
         </div>
-      </div>
-      <div class="join-form" data-reveal="delay-1">
-        <form id="joinForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First name *</label>
-              <input type="text" name="first_name" placeholder="Ada" required />
-            </div>
-            <div class="form-group">
-              <label>Last name *</label>
-              <input type="text" name="last_name" placeholder="Lovelace" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email *</label>
-            <input type="email" name="email" placeholder="ada@example.com" required />
-          </div>
-          <div class="form-group">
-            <label>LinkedIn or personal site</label>
-            <input type="text" name="profile_url" placeholder="linkedin.com/in/yourprofile" />
-          </div>
-          <div class="form-group">
-            <label>Your background *</label>
-            <select name="role" required>
-              <option value="" disabled selected>What do you do?</option>
-              <option value="offshore_engineering">Offshore / Marine Engineering</option>
-              <option value="maritime_law">Maritime / International Law</option>
-              <option value="project_finance">Infrastructure / Project Finance</option>
-              <option value="government_relations">Government Relations / Energy Policy</option>
-              <option value="operations">Offshore Operations</option>
-              <option value="compute_infrastructure">Data Center / Compute Infrastructure</option>
-              <option value="aquafarming">Marine Biology / Aquaculture</option>
-              <option value="founder">Founder / Operator</option>
-              <option value="investor">Investor</option>
-              <option value="other">Something else</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Where you are</label>
-            <input type="text" name="location" placeholder="City, country" />
-          </div>
-          <div class="form-group">
-            <label>What you see that others miss *</label>
-            <textarea name="why" placeholder="A sentence or two is enough." required></textarea>
-          </div>
-          <label class="form-consent">
-            <input type="checkbox" name="consent" value="true" required />
-            <span>I'm happy to be contacted by FathomX about this project.</span>
-          </label>
-          <button type="submit" class="form-submit" id="joinSubmit">Count me in →</button>
-        </form>
-        <div class="form-success" id="joinSuccess">
-          <div class="check">✓</div>
-          <h3>Got it.</h3>
-          <p>Every submission is read by the founding team personally.<br>We'll be in touch.</p>
+        <div class="fg">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="ada@example.com" required />
         </div>
+        <div class="fg">
+          <label>LinkedIn or personal site</label>
+          <input type="text" name="profile_url" placeholder="linkedin.com/in/yourprofile" />
+        </div>
+        <div class="fg">
+          <label>Your background *</label>
+          <select name="role" required>
+            <option value="" disabled selected>What do you do?</option>
+            <option value="offshore_engineering">Offshore / Marine Engineering</option>
+            <option value="maritime_law">Maritime / International Law</option>
+            <option value="project_finance">Infrastructure / Project Finance</option>
+            <option value="government_relations">Government Relations / Energy Policy</option>
+            <option value="operations">Offshore Operations</option>
+            <option value="compute_infrastructure">Data Center / Compute Infrastructure</option>
+            <option value="aquafarming">Marine Biology / Aquaculture</option>
+            <option value="founder">Founder / Operator</option>
+            <option value="investor">Investor</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Where you are</label>
+          <input type="text" name="location" placeholder="City, country" />
+        </div>
+        <div class="fg">
+          <label>What you see that others miss *</label>
+          <textarea name="why" placeholder="A sentence or two is enough." required></textarea>
+        </div>
+        <label class="f-consent">
+          <input type="checkbox" name="consent" value="true" required />
+          <span>I'm happy to be contacted by FathomX about this project.</span>
+        </label>
+        <button type="submit" class="f-submit" id="fBtn">Count me in →</button>
+      </form>
+      <div class="f-success" id="fWin">
+        <div class="check">✓</div>
+        <h3>Got it.</h3>
+        <p>Every submission is read personally.<br>We'll be in touch.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Fathom<span>X</span></div>
-  <p class="footer-sub">
-    Offshore energy · Compute at sea · Open-water aquaculture<br>
-    Pre-incorporation · 2026
-  </p>
+  <div class="footer-logo">Fathom<em>X</em></div>
+  <div class="footer-sub">Pre-incorporation · 2026 · International waters</div>
 </footer>
 
 <script>
-/* ── NAV SCROLL STATE ── */
-(function() {
-  const nav = document.getElementById('mainNav');
-  function update() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
+/* NAV */
+(function(){
+  var nav = document.getElementById('nav');
+  function tick(){ nav.classList.toggle('up', window.scrollY > 50); }
+  window.addEventListener('scroll', tick, {passive:true}); tick();
 })();
 
-/* ── SCROLL REVEAL ── */
-(function() {
-  const els = document.querySelectorAll('[data-reveal]');
-  const io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  els.forEach(function(el) { io.observe(el); });
+/* REVEAL */
+(function(){
+  var els = document.querySelectorAll('[data-reveal]');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, {threshold: 0.1});
+  els.forEach(function(el){ io.observe(el); });
 })();
 
-/* ── HERO CANVAS ── */
-(function() {
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, pts = [];
-
-  function resize() {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  for (var i = 0; i < 48; i++) {
-    pts.push({
-      x: Math.random() * 1400, y: Math.random() * 900,
-      r: Math.random() * 1.0 + 0.2,
-      vx: (Math.random() - 0.5) * 0.2,
-      vy: (Math.random() - 0.5) * 0.2,
-      a: Math.random() * 0.28 + 0.06
+/* STAR CANVAS */
+(function(){
+  var c = document.getElementById('stars');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var W, H, pts = [];
+  function resize(){ W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  for(var i=0;i<60;i++) pts.push({x:Math.random()*1600,y:Math.random()*900,r:Math.random()*0.9+0.1,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,a:Math.random()*.22+.04});
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(function(p){
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(212,151,74,'+p.a+')'; ctx.fill();
     });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    for (var i = 0; i < pts.length; i++) {
-      var p = pts[i];
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0,200,224,' + p.a + ')';
-      ctx.fill();
-      for (var j = i + 1; j < pts.length; j++) {
-        var q = pts[j];
-        var dx = p.x - q.x, dy = p.y - q.y;
-        var d = Math.sqrt(dx*dx + dy*dy);
-        if (d < 110) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = 'rgba(0,200,224,' + (0.035 * (1 - d/110)) + ')';
-          ctx.lineWidth = 0.5; ctx.stroke();
-        }
-      }
-    }
     requestAnimationFrame(draw);
   }
   draw();
 })();
 
-/* ── JOIN FORM ── */
-(function() {
-  var form = document.getElementById('joinForm');
-  var btn  = document.getElementById('joinSubmit');
-  var win  = document.getElementById('joinSuccess');
-  if (!form) return;
-
-  form.addEventListener('submit', async function(e) {
+/* FORM */
+(function(){
+  var form = document.getElementById('jForm');
+  var btn  = document.getElementById('fBtn');
+  var win  = document.getElementById('fWin');
+  if(!form) return;
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.disabled=true; btn.textContent='Sending…';
     var data = Object.fromEntries(new FormData(form));
-    try {
-      var res  = await fetch('/api/join', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    try{
+      var res  = await fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
       var json = await res.json();
-      if (json.success) {
-        form.style.display = 'none';
-        win.style.display = 'block';
-      } else {
-        btn.disabled = false; btn.textContent = 'Count me in →';
-        alert(json.message || 'Something went wrong. Please try again.');
-      }
-    } catch(err) {
-      btn.disabled = false; btn.textContent = 'Count me in →';
-      alert('Network error. Please try again.');
-    }
+      if(json.success){ form.style.display='none'; win.style.display='block'; }
+      else { btn.disabled=false; btn.textContent='Count me in →'; alert(json.message||'Something went wrong.'); }
+    }catch(err){ btn.disabled=false; btn.textContent='Count me in →'; alert('Network error. Please try again.'); }
   });
 })();
 </script>
