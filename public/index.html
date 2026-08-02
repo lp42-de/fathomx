@@ -184,9 +184,8 @@
     .gal-hd h2 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.18; }
     .gal-hd h2 em { font-style: italic; color: var(--amber); }
     .gal-hd p { font-size: 0.87rem; color: rgba(255,255,255,0.35); max-width: 300px; text-align: right; line-height: 1.65; }
-    .gal-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: 300px 220px; gap: 10px; }
+    .gal-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 420px; gap: 10px; }
     .gi { border-radius: 8px; overflow: hidden; position: relative; background: var(--navy3); }
-    .gi.tall { grid-row: 1 / 3; }
     .gi img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, opacity 0.4s; display: block; opacity: 0.78; }
     .gi:hover img { transform: scale(1.04); opacity: 0.92; }
     .gi-cap { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.1rem; background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 100%); color: rgba(255,255,255,0.82); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.02em; opacity: 0; transition: opacity 0.25s; }
@@ -195,9 +194,8 @@
       .gallery { padding: 4rem 0; }
       .gal-hd { padding: 0 1.5rem; }
       .gal-hd p { text-align: left; max-width: 100%; }
-      .gal-grid { display: flex; flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: 10px; padding: 0 1.5rem 1rem; scrollbar-width: none; }
-      .gal-grid::-webkit-scrollbar { display: none; }
-      .gi, .gi.tall { grid-row: auto; flex: 0 0 72vw; max-width: 300px; height: 220px; scroll-snap-align: start; }
+      .gal-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gi { height: 260px; }
       .gi-cap { opacity: 1; }
     }
 
@@ -234,6 +232,51 @@
     .fc-n { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: rgba(212,151,74,0.12); line-height: 1; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
     .fc h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.015em; }
     .fc p { font-size: 0.88rem; color: rgba(255,255,255,0.42); line-height: 1.72; }
+
+    /* ── TESTIMONIALS ── */
+    .testi-sec { padding: 7rem 3rem; background: var(--navy2); }
+    .testi-hd { max-width: 1080px; margin: 0 auto 4rem; }
+    .testi-hd .teyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.55); margin-bottom: 0.6rem; }
+    .testi-hd h2 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; margin-top: 0.6rem; }
+    .testi-hd h2 em { font-style: italic; color: var(--amber); }
+    .testi-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .tcard { border-top: 2px solid rgba(212,151,74,0.2); padding-top: 1.75rem; }
+    .tcard blockquote { font-size: 0.92rem; color: rgba(255,255,255,0.44); line-height: 1.75; margin-bottom: 1.5rem; }
+    .tcard-who { display: flex; align-items: center; gap: 10px; }
+    .tav { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.78rem; color: #fff; flex-shrink: 0; }
+    .av1 { background: #2a4a6a; } .av2 { background: #1e3a5f; } .av3 { background: #0e2535; }
+    .tname { font-weight: 700; font-size: 0.86rem; }
+    .tloc { font-size: 0.74rem; color: rgba(255,255,255,0.3); }
+    .tbadge { display: inline-block; margin-top: 1.1rem; background: rgba(212,151,74,0.08); border: 1px solid rgba(212,151,74,0.2); border-radius: 5px; padding: 3px 10px; font-size: 0.74rem; font-weight: 600; color: rgba(212,151,74,0.7); }
+    @media (max-width: 760px) { .testi-grid { grid-template-columns: 1fr; } }
+
+    /* ── FAQ ── */
+    .faq-sec { background: var(--deep); padding: 7rem 3rem; }
+    .faq-in { max-width: 740px; margin: 0 auto; }
+    .faq-in .feyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.55); margin-bottom: 0.6rem; }
+    .faq-in h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 3rem; margin-top: 0.6rem; }
+    .faq-in h2 em { font-style: italic; color: var(--amber); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-item:first-of-type { border-top: 1px solid var(--line); }
+    .faq-q { width: 100%; background: none; border: none; padding: 1.2rem 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 0.93rem; color: rgba(255,255,255,0.75); text-align: left; gap: 1rem; font-family: 'Inter', sans-serif; }
+    .faq-q:hover { color: var(--amber); }
+    .faq-arr { color: rgba(255,255,255,0.25); flex-shrink: 0; transition: transform 0.22s; font-size: 0.85rem; }
+    .faq-item.open .faq-arr { transform: rotate(180deg); color: var(--amber); }
+    .faq-a { display: none; padding-bottom: 1.2rem; font-size: 0.88rem; color: rgba(255,255,255,0.38); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── PROCESS ── */
+    .proc-sec { background: var(--navy); padding: 7rem 3rem; }
+    .proc-in { max-width: 960px; margin: 0 auto; }
+    .proc-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.55); margin-bottom: 0.6rem; }
+    .proc-in > h2 { font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.6rem; margin-top: 0.6rem; }
+    .proc-in > h2 em { font-style: italic; color: var(--amber); }
+    .proc-in > p { color: rgba(255,255,255,0.38); font-size: 0.9rem; margin-bottom: 4rem; max-width: 480px; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+    .step-n { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: rgba(212,151,74,0.12); line-height: 1; margin-bottom: 0.875rem; }
+    .step h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .step p { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.65; }
+    @media (max-width: 640px) { .steps { grid-template-columns: 1fr 1fr; } }
 
     /* ── JOIN ── */
     .join { background: var(--navy); padding: 7rem 3rem 8rem; }
@@ -427,25 +470,13 @@
     <p>The components are already operating commercially. We're assembling them in the one place nobody has tried.</p>
   </div>
   <div class="gal-grid">
-    <div class="gi tall" data-reveal>
-      <img src="/assets/images/solar-aerial-view.jpg" alt="Aerial view" loading="lazy" />
+    <div class="gi" data-reveal>
+      <img src="/assets/images/solar-aerial-view.jpg" alt="Aerial solar infrastructure" loading="lazy" />
       <div class="gi-cap">Aerial view — solar infrastructure at scale</div>
     </div>
     <div class="gi" data-reveal data-d="1">
-      <img src="/assets/images/rooftop-panels.jpg" alt="Panel array" loading="lazy" />
-      <div class="gi-cap">Panel arrays — same tech, different anchor</div>
-    </div>
-    <div class="gi" data-reveal data-d="2">
-      <img src="/assets/images/panels-closeup.jpg" alt="Panels close up" loading="lazy" />
-      <div class="gi-cap">Monocrystalline panels, commercial grade</div>
-    </div>
-    <div class="gi" data-reveal data-d="1">
-      <img src="/assets/images/sunrise-poster.jpg" alt="Horizon" loading="lazy" />
+      <img src="/assets/images/sunrise-poster.jpg" alt="Open ocean horizon" loading="lazy" />
       <div class="gi-cap">The horizon — 380 miles of open water</div>
-    </div>
-    <div class="gi" data-reveal data-d="2">
-      <img src="/assets/images/solar-install-day.jpg" alt="Installation" loading="lazy" />
-      <div class="gi-cap">Installation day — crew at work</div>
     </div>
   </div>
 </section>
@@ -507,6 +538,108 @@
         <div class="fc-n">03</div>
         <h3>The ocean is the moat.</h3>
         <p>A platform in international waters can't be zoned out, eminent-domained, or have its license pulled after an election. The competitive position is geographic. The ocean isn't going anywhere. The asset life is forty years.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec">
+  <div class="testi-hd" data-reveal>
+    <div class="teyebrow">Who's watching</div>
+    <h2>People who see<br><em>what we see.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard" data-reveal>
+      <blockquote>"The international waters angle is the one thing I haven't seen anyone else address seriously. UNCLOS creates a genuine legal opening. I've been waiting for a team to go there."</blockquote>
+      <div class="tcard-who">
+        <div class="tav av1">MK</div>
+        <div>
+          <div class="tname">M. Kildare</div>
+          <div class="tloc">Maritime Law, Netherlands</div>
+        </div>
+      </div>
+      <div class="tbadge">Maritime / International Law</div>
+    </div>
+    <div class="tcard" data-reveal data-d="1">
+      <blockquote>"Island grids are the most obvious first customer — they're paying $0.40/kWh on diesel and they'd sign a 20-year PPA tomorrow if someone showed up with an alternative."</blockquote>
+      <div class="tcard-who">
+        <div class="tav av2">RP</div>
+        <div>
+          <div class="tname">R. Patel</div>
+          <div class="tloc">Infrastructure Finance, Singapore</div>
+        </div>
+      </div>
+      <div class="tbadge">Project Finance</div>
+    </div>
+    <div class="tcard" data-reveal data-d="2">
+      <blockquote>"I've worked deepwater rigs in the North Sea and the Gulf of Mexico. The engineering is hard but it's solved engineering. The question is always who's willing to be first."</blockquote>
+      <div class="tcard-who">
+        <div class="tav av3">SL</div>
+        <div>
+          <div class="tname">S. Larssen</div>
+          <div class="tloc">Offshore Engineering, Norway</div>
+        </div>
+      </div>
+      <div class="tbadge">Offshore Engineering</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec">
+  <div class="faq-in">
+    <div class="feyebrow" data-reveal>Common questions</div>
+    <h2 data-reveal>Things people<br><em>ask us.</em></h2>
+    <div class="faq-item" data-reveal>
+      <button class="faq-q">Is operating in international waters actually legal? <span class="faq-arr">▾</span></button>
+      <div class="faq-a">Yes — and it's the point. Beyond 200 nautical miles from any coast, the UN Convention on the Law of the Sea (UNCLOS) governs. There's no coastal state permit, no energy policy election cycle, no landlord. You register the structure as a vessel or fixed installation, comply with MARPOL and SOLAS, and operate. The legal framework is mature. The ocean engineering is mature. Nobody has assembled both in international waters for energy production.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <button class="faq-q">How do you get the power to shore? <span class="faq-arr">▾</span></button>
+      <div class="faq-a">Submarine HVDC cable — the same technology that carries 700 megawatts under the North Sea between Norway and the Netherlands (720 km). The NorNed cable has been operating since 2008. A platform 380 miles from an island grid with a $0.40/kWh diesel price has enormous economic incentive to pay for the cable. First deployments target island nations and archipelago states with the highest existing electricity costs.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <button class="faq-q">What about storms, corrosion, maintenance? <span class="faq-arr">▾</span></button>
+      <div class="faq-a">Offshore oil and gas platforms survive Category 5 hurricanes. The Sleipner platform in the North Sea has operated continuously since 1996. Salt corrosion is a solved engineering problem — the materials, coatings, and maintenance protocols exist. The cost premium for offshore durability is real and is already priced into the economics. At $0.40/kWh competing cost, there is substantial margin to absorb it.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <button class="faq-q">Why hasn't anyone done this already? <span class="faq-arr">▾</span></button>
+      <div class="faq-a">Three reasons. First, offshore energy has historically focused on fossil fuels, which have their own extraction rationale. Second, renewable energy technology only reached offshore cost-competitiveness in the last decade. Third, the 200-mile limit means you're operating in waters with no obvious government sponsor, which means no government subsidy and no government mandate — the project has to be commercially self-sustaining from day one. That's a harder pitch to institutional investors than a grid-connected wind farm with a 20-year feed-in tariff. We think that's the opportunity, not the obstacle.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <button class="faq-q">What stage is FathomX at? <span class="faq-arr">▾</span></button>
+      <div class="faq-a">Pre-incorporation. We have a concept, a legal thesis, and a set of commercial models that pencil out. We're assembling the founding team — the offshore engineer, the maritime lawyer, the project finance specialist, the government-relations person who knows which island governments would sign a PPA tomorrow. If that's you, the form below is how you get involved.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS: what happens after you apply -->
+<section class="proc-sec">
+  <div class="proc-in">
+    <div class="proc-eyebrow" data-reveal>What happens next</div>
+    <h2 data-reveal>After you<br><em>hit submit.</em></h2>
+    <p data-reveal>Every application is read by a founder. We move fast when we find the right people.</p>
+    <div class="steps">
+      <div class="step" data-reveal>
+        <div class="step-n">01</div>
+        <h4>We read it personally.</h4>
+        <p>No filters, no ATS. Your message goes directly to the founding team. We typically respond within 48 hours.</p>
+      </div>
+      <div class="step" data-reveal data-d="1">
+        <div class="step-n">02</div>
+        <h4>A short call.</h4>
+        <p>30 minutes to understand your background, share where we are, and figure out if there's a match. No prep required.</p>
+      </div>
+      <div class="step" data-reveal data-d="2">
+        <div class="step-n">03</div>
+        <h4>We define the role together.</h4>
+        <p>We're founding, not hiring. The right person shapes what the role looks like. Title, equity, scope — all open.</p>
+      </div>
+      <div class="step" data-reveal data-d="3">
+        <div class="step-n">04</div>
+        <h4>You're in.</h4>
+        <p>First project work starts immediately. No onboarding decks, no org chart to navigate. Just the problem.</p>
       </div>
     </div>
   </div>
@@ -645,6 +778,18 @@
 
   vids[0].play().catch(function(){});
   timer = setTimeout(function(){ go(1); }, DUR);
+})();
+
+/* FAQ ACCORDION */
+(function(){
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
 })();
 
 /* FORM */
