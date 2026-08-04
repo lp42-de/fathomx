@@ -9,6 +9,7 @@
   <meta property="og:description" content="The open ocean generates more energy every day than humanity uses. Nobody has harvested it. We're going to." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fathomx.com/" />
+  <meta name="theme-color" content="#060d14" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -103,13 +104,6 @@
     .btn-a:hover { background: var(--gold); transform: translateY(-1px); }
     .btn-b { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); padding: 0.85rem 2rem; border-radius: 8px; font-weight: 500; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.12); transition: all 0.2s; }
     .btn-b:hover { background: rgba(255,255,255,0.13); color: var(--white); }
-    .v-hero-stats {
-      display: flex; gap: 3.5rem; margin-top: 4rem; padding-top: 2.5rem;
-      border-top: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap;
-    }
-    .vstat .n { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; line-height: 1; }
-    .vstat .n em { font-style: normal; color: var(--amber); }
-    .vstat .l { font-size: 0.7rem; color: rgba(255,255,255,0.28); margin-top: 4px; letter-spacing: 0.04em; }
     .v-hero-lede { font-size: 0.72rem; color: rgba(255,255,255,0.28); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.07); }
 
     /* ── STAT BAND ── */
@@ -160,6 +154,11 @@
     .intro-text h2 { font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 700; line-height: 1.18; letter-spacing: -0.025em; margin-bottom: 1.5rem; }
     .intro-text h2 em { font-style: italic; color: var(--amber); }
     .intro-text p { font-size: 0.97rem; color: rgba(255,255,255,0.44); line-height: 1.8; margin-bottom: 1.1rem; }
+    .intro-facts { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0; }
+    .ifact { display: flex; align-items: baseline; gap: 0.75rem; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .ifact:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+    .ifact-n { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--amber); min-width: 80px; }
+    .ifact-l { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.5; }
     .intro-photo { border-radius: 12px; overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 2px 0 0 var(--amber), 0 20px 60px rgba(0,0,0,0.5); }
     .intro-photo img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -180,17 +179,52 @@
     .pq blockquote strong { font-weight: 700; font-style: normal; color: var(--white); }
     .pq cite { font-size: 0.75rem; color: rgba(212,151,74,0.42); font-style: normal; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* ── FULL VIDEO ── */
-    .full-vid { position: relative; background: #000; overflow: hidden; }
-    .full-vid video { width: 100%; display: block; max-height: 70vh; object-fit: cover; opacity: 0.78; }
-    .full-vid-cap {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 4rem 3rem 2.5rem;
-      background: linear-gradient(to top, rgba(6,13,20,0.9) 0%, transparent 100%);
+    /* ── ARCHITECTURE DIAGRAM ── */
+    .arch-sec { background: var(--deep); padding: 7rem 3rem; overflow: hidden; }
+    .arch-inner { max-width: var(--max); margin: 0 auto; }
+    .arch-hd { margin-bottom: 4rem; }
+    .arch-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.6); margin-bottom: 0.6rem; }
+    .arch-hd h2 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.18; margin-top: 0.6rem; }
+    .arch-hd h2 em { font-style: italic; color: var(--amber); }
+    .arch-hd p { font-size: 0.9rem; color: rgba(255,255,255,0.35); margin-top: 0.75rem; max-width: 480px; }
+    .arch-diagram {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; position: relative;
     }
-    .full-vid-cap .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(212,151,74,0.65); margin-bottom: 0.5rem; }
-    .full-vid-cap h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.2; }
-    .full-vid-cap p { font-size: 0.9rem; color: rgba(255,255,255,0.45); margin-top: 0.4rem; max-width: 500px; }
+    .arch-diagram::before {
+      content: ''; position: absolute;
+      top: 52px; left: calc(25% - 0px); right: calc(25% - 0px);
+      height: 1px; background: linear-gradient(90deg, var(--amber) 0%, rgba(212,151,74,0.3) 100%);
+      z-index: 0;
+    }
+    .arch-col { padding: 0 1.5rem 0 0; position: relative; z-index: 1; }
+    .arch-col:last-child { padding-right: 0; }
+    .arch-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      border: 1px solid rgba(212,151,74,0.25);
+      background: var(--navy2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1.25rem;
+      position: relative; z-index: 2;
+    }
+    .arch-col-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.55); margin-bottom: 0.5rem; }
+    .arch-col-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.6rem; line-height: 1.3; }
+    .arch-col-items { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 1rem; }
+    .arch-item { font-size: 0.8rem; color: rgba(255,255,255,0.38); display: flex; align-items: center; gap: 0.4rem; }
+    .arch-item::before { content: '—'; color: rgba(212,151,74,0.3); flex-shrink: 0; }
+    .arch-stat { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--amber); margin-top: 0.75rem; }
+    .arch-stat-l { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+    .arch-connector {
+      position: absolute; top: 24px; right: -12px;
+      width: 24px; height: 24px; z-index: 3;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(212,151,74,0.6); font-size: 0.9rem;
+    }
+    @media (max-width: 760px) {
+      .arch-diagram { grid-template-columns: 1fr 1fr; }
+      .arch-diagram::before { display: none; }
+    }
+    @media (max-width: 480px) { .arch-diagram { grid-template-columns: 1fr; } }
 
     /* ── GALLERY ── */
     .gallery { background: var(--navy2); padding: 7rem 3rem; }
@@ -233,9 +267,15 @@
     .bfil { height: 100%; border-radius: 5px; display: flex; align-items: center; padding-left: 10px; font-size: 0.74rem; font-weight: 700; transition: width 1.6s cubic-bezier(.4,0,.2,1); width: 0; }
     .bf1 { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.32); }
     .bf2 { background: linear-gradient(90deg, var(--navy3), var(--amber)); color: #fff; }
+    .chart-divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 1.5rem 0; }
+    .chart-markets h5 { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.2); margin-bottom: 0.85rem; }
+    .market-row { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .market-row:last-child { border-bottom: none; }
+    .mkt-name { font-size: 0.78rem; color: rgba(255,255,255,0.42); }
+    .mkt-cost { font-size: 0.78rem; font-weight: 700; color: rgba(212,151,74,0.7); }
     @media (max-width: 760px) { .math-in { grid-template-columns: 1fr; gap: 3rem; } }
 
-    /* ── GRID FACTS ── */
+    /* ── 3 FACTS ── */
     .facts { background: var(--deep); padding: 6rem 3rem; }
     .facts-inner { max-width: var(--max); margin: 0 auto; }
     .facts h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 3.5rem; max-width: 520px; line-height: 1.2; }
@@ -247,12 +287,26 @@
     .fc h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.015em; }
     .fc p { font-size: 0.88rem; color: rgba(255,255,255,0.42); line-height: 1.72; }
 
+    /* ── PRESS / SIGNAL ── */
+    .press-sec { background: var(--navy2); padding: 5rem 3rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .press-inner { max-width: var(--max); margin: 0 auto; }
+    .press-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 2rem; }
+    .press-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--line); border-radius: 8px; overflow: hidden; }
+    .pcard { background: var(--navy); padding: 1.5rem 1.75rem; transition: background 0.2s; }
+    .pcard:hover { background: var(--navy3); }
+    .pcard-source { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(212,151,74,0.4); margin-bottom: 0.5rem; }
+    .pcard-quote { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 0.75rem; }
+    .pcard-meta { font-size: 0.7rem; color: rgba(255,255,255,0.22); }
+    @media (max-width: 760px) { .press-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .press-grid { grid-template-columns: 1fr; } }
+
     /* ── TESTIMONIALS ── */
     .testi-sec { padding: 7rem 3rem; background: var(--navy2); }
     .testi-hd { max-width: 1080px; margin: 0 auto 4rem; }
     .testi-hd .teyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.55); margin-bottom: 0.6rem; }
     .testi-hd h2 { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; margin-top: 0.6rem; }
     .testi-hd h2 em { font-style: italic; color: var(--amber); }
+    .testi-hd p { font-size: 0.87rem; color: rgba(255,255,255,0.35); margin-top: 0.6rem; max-width: 480px; }
     .testi-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
     .tcard { border-top: 2px solid rgba(212,151,74,0.2); padding-top: 1.75rem; }
     .tcard blockquote { font-size: 0.92rem; color: rgba(255,255,255,0.44); line-height: 1.75; margin-bottom: 1.5rem; }
@@ -279,18 +333,46 @@
     .faq-a { display: none; padding-bottom: 1.2rem; font-size: 0.88rem; color: rgba(255,255,255,0.38); line-height: 1.7; }
     .faq-item.open .faq-a { display: block; }
 
-    /* ── PROCESS ── */
-    .proc-sec { background: var(--navy); padding: 7rem 3rem; }
-    .proc-in { max-width: 960px; margin: 0 auto; }
-    .proc-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.55); margin-bottom: 0.6rem; }
-    .proc-in > h2 { font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.6rem; margin-top: 0.6rem; }
-    .proc-in > h2 em { font-style: italic; color: var(--amber); }
-    .proc-in > p { color: rgba(255,255,255,0.38); font-size: 0.9rem; margin-bottom: 4rem; max-width: 480px; }
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
-    .step-n { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: rgba(212,151,74,0.12); line-height: 1; margin-bottom: 0.875rem; }
-    .step h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .step p { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.65; }
-    @media (max-width: 640px) { .steps { grid-template-columns: 1fr 1fr; } }
+    /* ── ROADMAP ── */
+    .road-sec { background: var(--navy); padding: 7rem 3rem; }
+    .road-in { max-width: var(--max); margin: 0 auto; }
+    .road-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,151,74,0.55); margin-bottom: 0.6rem; }
+    .road-in > h2 { font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.6rem; margin-top: 0.6rem; }
+    .road-in > h2 em { font-style: italic; color: var(--amber); }
+    .road-in > p { color: rgba(255,255,255,0.35); font-size: 0.9rem; margin-bottom: 4rem; max-width: 480px; }
+    .road-track { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+    .road-track::before {
+      content: ''; position: absolute;
+      top: 14px; left: 0; right: 0; height: 1px;
+      background: var(--line);
+    }
+    .road-track::after {
+      content: ''; position: absolute;
+      top: 14px; left: 0; width: 28%; height: 1px;
+      background: var(--amber);
+    }
+    .rmile { padding: 0 1rem 0 0; }
+    .rmile-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 2px solid var(--line); background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; position: relative; z-index: 1;
+      transition: border-color 0.2s;
+    }
+    .rmile.done .rmile-dot { border-color: var(--amber); background: rgba(212,151,74,0.1); }
+    .rmile.done .rmile-dot::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); }
+    .rmile.current .rmile-dot { border-color: var(--amber); background: rgba(212,151,74,0.18); box-shadow: 0 0 0 4px rgba(212,151,74,0.08); animation: pulse-dot 2.5s infinite; }
+    .rmile.current .rmile-dot::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); }
+    @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 4px rgba(212,151,74,0.08)} 50%{box-shadow:0 0 0 8px rgba(212,151,74,0.04)} }
+    .rmile-date { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(212,151,74,0.4); margin-bottom: 0.3rem; }
+    .rmile.current .rmile-date { color: var(--amber); }
+    .rmile-label { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.3rem; line-height: 1.3; }
+    .rmile-sub { font-size: 0.78rem; color: rgba(255,255,255,0.28); line-height: 1.55; }
+    @media (max-width: 760px) {
+      .road-track { grid-template-columns: 1fr 1fr; }
+      .road-track::before, .road-track::after { display: none; }
+    }
+    @media (max-width: 480px) { .road-track { grid-template-columns: 1fr; } }
 
     /* ── JOIN ── */
     .join { background: var(--navy); padding: 7rem 3rem 8rem; }
@@ -299,6 +381,8 @@
     .join-hd h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1rem; }
     .join-hd h2 em { font-style: italic; color: var(--amber); }
     .join-hd p { font-size: 1rem; color: rgba(255,255,255,0.44); line-height: 1.8; }
+    .join-roles { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; margin-bottom: 0; }
+    .role-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; background: rgba(212,151,74,0.06); border: 1px solid rgba(212,151,74,0.18); border-radius: 20px; padding: 0.28rem 0.75rem; color: rgba(212,151,74,0.65); }
 
     .join-form-wrap { background: var(--navy2); border: 1px solid var(--line); border-radius: 14px; padding: 2.5rem; }
     .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -331,10 +415,15 @@
     .f-success p { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.7; }
 
     /* ── FOOTER ── */
-    footer { background: var(--deep); border-top: 1px solid var(--line); padding: 2.25rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer { background: var(--deep); border-top: 1px solid var(--line); padding: 2.5rem 3rem; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
     .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; }
     .footer-logo em { font-style: italic; color: var(--amber); }
-    .footer-sub { font-size: 0.75rem; color: var(--muted); }
+    .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-nav a { font-size: 0.78rem; color: rgba(255,255,255,0.25); transition: color 0.2s; }
+    .footer-nav a:hover { color: rgba(255,255,255,0.55); }
+    .footer-sub { font-size: 0.75rem; color: var(--muted); text-align: right; }
+    @media (max-width: 640px) { .footer-inner { flex-direction: column; align-items: flex-start; } .footer-sub { text-align: left; } }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
@@ -347,15 +436,16 @@
       .v-hero-body { padding: 0 1.5rem 4rem; }
       .stitch-cap { padding: 2rem 1.5rem 1.75rem; }
       .pq { padding: 4.5rem 1.5rem; }
-      .full-vid-cap { padding: 2.5rem 1.5rem 1.75rem; }
+      .arch-sec { padding: 5rem 1.5rem; }
       .facts { padding: 5rem 1.5rem; }
       .facts-grid { grid-template-columns: 1fr; }
       .math-sec { padding: 5rem 1.5rem; }
+      .press-sec { padding: 3.5rem 1.5rem; }
+      .road-sec { padding: 5rem 1.5rem; }
       .join { padding: 5rem 1.5rem 6rem; }
       .join-form-wrap { padding: 1.75rem; }
       .frow { grid-template-columns: 1fr; }
       footer { padding: 2rem 1.5rem; }
-      .v-hero-stats { gap: 2rem; }
     }
   </style>
 </head>
@@ -370,17 +460,17 @@
 <div class="ticker">
   <div class="ticker-track" id="tickerTrack">
     <span class="t-item">🌊 <strong>13°N · 142°E</strong> — 380 nautical miles from the nearest coast</span>
-    <span class="t-item">⚡ <strong>0.40/kWh</strong> — what island nations pay for diesel power today</span>
-    <span class="t-item">🌐 <strong>71%</strong> of Earth's surface has never been used to generate energy</span>
-    <span class="t-item">🛞 <strong>Floating turbines</strong> operate commercially off Norway since 2017</span>
-    <span class="t-item">🔌 <strong>720 km</strong> — the NorNed cable carries 700 MW under the North Sea</span>
-    <span class="t-item">📡 <strong>No jurisdiction</strong> beyond the 200-nautical-mile exclusive economic zone</span>
+    <span class="t-item">⚡ <strong>$0.40/kWh</strong> — what Pacific island nations pay for diesel power today</span>
+    <span class="t-item">🌐 <strong>71%</strong> of Earth's surface is ocean — none used for offshore renewable energy</span>
+    <span class="t-item">🛞 <strong>Hywind Tampen</strong> — world's largest floating wind farm, operating since 2022</span>
+    <span class="t-item">🔌 <strong>NorNed cable</strong> — 700 MW under 720 km of North Sea, running since 2008</span>
+    <span class="t-item">📡 <strong>UNCLOS Art. 87</strong> — freedom of the high seas includes energy infrastructure</span>
     <span class="t-item">🌊 <strong>13°N · 142°E</strong> — 380 nautical miles from the nearest coast</span>
-    <span class="t-item">⚡ <strong>0.40/kWh</strong> — what island nations pay for diesel power today</span>
-    <span class="t-item">🌐 <strong>71%</strong> of Earth's surface has never been used to generate energy</span>
-    <span class="t-item">🛞 <strong>Floating turbines</strong> operate commercially off Norway since 2017</span>
-    <span class="t-item">🔌 <strong>720 km</strong> — the NorNed cable carries 700 MW under the North Sea</span>
-    <span class="t-item">📡 <strong>No jurisdiction</strong> beyond the 200-nautical-mile exclusive economic zone</span>
+    <span class="t-item">⚡ <strong>$0.40/kWh</strong> — what Pacific island nations pay for diesel power today</span>
+    <span class="t-item">🌐 <strong>71%</strong> of Earth's surface is ocean — none used for offshore renewable energy</span>
+    <span class="t-item">🛞 <strong>Hywind Tampen</strong> — world's largest floating wind farm, operating since 2022</span>
+    <span class="t-item">🔌 <strong>NorNed cable</strong> — 700 MW under 720 km of North Sea, running since 2008</span>
+    <span class="t-item">📡 <strong>UNCLOS Art. 87</strong> — freedom of the high seas includes energy infrastructure</span>
   </div>
 </div>
 
@@ -404,7 +494,7 @@
   <div class="v-hero-body">
     <div class="v-eyebrow">International waters</div>
     <h1>The ocean has been<br>generating power for<br><em>four billion years.</em></h1>
-    <p class="v-hero-sub">Nobody has harvested it.<br>We're going to.</p>
+    <p class="v-hero-sub">110 million square miles. Zero commercial energy platforms. We're going to be first.</p>
     <div class="v-hero-btns">
       <a href="#join" class="btn-a">Join the mission</a>
       <a href="#stitch" class="btn-b">See the vision</a>
@@ -457,12 +547,16 @@
     <div class="intro-text" data-reveal>
       <div class="intro-eyebrow">The opportunity</div>
       <h2>Every offshore energy project in history has been built<br><em>inside someone's waters.</em></h2>
-      <p>The North Sea. The Persian Gulf. The Bass Strait. Every one of them sits inside an exclusive economic zone — subject to permits, politics, elections, and landlords who can change their mind.</p>
-      <p>The open ocean — 110 million square miles beyond the 200-mile line — has never been used to generate energy at scale. Not because it can't be done. Because nobody has gone there yet.</p>
-      <p>The technology exists. Floating turbines. Submarine cables. Offshore structures that survive Category 5 storms. The only thing missing is someone willing to anchor in waters that belong to everyone and no one.</p>
+      <p>The North Sea. The Persian Gulf. The Bass Strait. Every one of them sits inside an exclusive economic zone — subject to permits, politics, and landlords who can change their mind.</p>
+      <p>Beyond the 200-mile line, there is no landlord. No permit. No election cycle. Just ocean. The floating turbine, the submarine cable, the deepwater structure — all of this technology exists and operates commercially today. Nobody has assembled it beyond the EEZ boundary.</p>
+      <div class="intro-facts">
+        <div class="ifact"><div class="ifact-n">110M mi²</div><div class="ifact-l">open ocean beyond any jurisdiction — never used for energy</div></div>
+        <div class="ifact"><div class="ifact-n">2022</div><div class="ifact-l">Hywind Tampen began operations — world's largest floating wind farm</div></div>
+        <div class="ifact"><div class="ifact-n">$0.05</div><div class="ifact-l">per kWh — Platform Meridian target LCOE, vs $0.40 island diesel</div></div>
+      </div>
     </div>
     <div class="intro-photo" data-reveal data-d="2">
-      <img src="/assets/images/coastal-aerial.jpg" alt="Aerial view of coastline where territorial waters end" loading="lazy" />
+      <img src="/assets/images/coastal-aerial.jpg" alt="Open ocean aerial — international waters" loading="lazy" />
     </div>
   </div>
 </div>
@@ -470,23 +564,77 @@
 <!-- PULL QUOTE -->
 <section class="pq">
   <blockquote data-reveal>
-    The North Sea, the Persian Gulf, the Bass Strait —
-    <strong>every offshore energy project in history has been built inside someone's waters.</strong>
-    The open ocean has never been used to generate energy at scale.
-    Not because it can't be. Because nobody has gone there yet.
+    Beyond 200 nautical miles, <strong>the UN Convention on the Law of the Sea confers freedom to build, operate, and transmit energy.</strong> The legal framework is mature. The ocean engineering is mature. The commercial model pencils out. Nobody has gone there yet.
   </blockquote>
-  <cite data-reveal data-d="1">13°N · 142°E · 380 nautical miles from the nearest coast</cite>
+  <cite data-reveal data-d="1">UNCLOS Article 87 · International Waters · 13°N 142°E</cite>
 </section>
 
-<!-- STITCH 2: FULL VIDEO -->
-<section class="full-vid">
-  <video autoplay muted playsinline loop preload="auto">
-    <source src="/assets/videos/ocean-waves.mp4" type="video/mp4" />
-  </video>
-  <div class="full-vid-cap">
-    <div class="eyebrow">The platform</div>
-    <h2>Solar. Wind. Wave.<br>One floating structure.</h2>
-    <p>Modular, permanent, anchored beyond any jurisdiction. One cable back to the mainland.</p>
+<!-- ARCHITECTURE DIAGRAM -->
+<section class="arch-sec">
+  <div class="arch-inner">
+    <div class="arch-hd" data-reveal>
+      <div class="arch-eyebrow">The system</div>
+      <h2>Platform Meridian —<br><em>end to end.</em></h2>
+      <p>Four integrated layers. One structure anchored in international waters. One cable back to the customer.</p>
+    </div>
+    <div class="arch-diagram" data-reveal data-d="1">
+
+      <div class="arch-col">
+        <div class="arch-icon">💨</div>
+        <div class="arch-col-label">01 — Energy</div>
+        <div class="arch-col-title">Multi-source generation</div>
+        <div class="arch-col-items">
+          <div class="arch-item">Floating wind turbines</div>
+          <div class="arch-item">Surface solar arrays</div>
+          <div class="arch-item">Wave energy converters</div>
+        </div>
+        <div class="arch-stat">8–50 MW</div>
+        <div class="arch-stat-l">Phase 1 target output</div>
+        <div class="arch-connector">→</div>
+      </div>
+
+      <div class="arch-col">
+        <div class="arch-icon">⬡</div>
+        <div class="arch-col-label">02 — Platform</div>
+        <div class="arch-col-title">Floating structure</div>
+        <div class="arch-col-items">
+          <div class="arch-item">Semi-submersible hull</div>
+          <div class="arch-item">Power conversion & storage</div>
+          <div class="arch-item">Maintenance infrastructure</div>
+        </div>
+        <div class="arch-stat">13°N · 142°E</div>
+        <div class="arch-stat-l">Proposed site — W. Pacific</div>
+        <div class="arch-connector">→</div>
+      </div>
+
+      <div class="arch-col">
+        <div class="arch-icon">🔌</div>
+        <div class="arch-col-label">03 — Transmission</div>
+        <div class="arch-col-title">HVDC submarine cable</div>
+        <div class="arch-col-items">
+          <div class="arch-item">High-voltage DC cable</div>
+          <div class="arch-item">Shore landing station</div>
+          <div class="arch-item">Grid interconnect</div>
+        </div>
+        <div class="arch-stat">380+ nm</div>
+        <div class="arch-stat-l">NorNed proven to 720 km</div>
+        <div class="arch-connector">→</div>
+      </div>
+
+      <div class="arch-col">
+        <div class="arch-icon">🏝</div>
+        <div class="arch-col-label">04 — Customer</div>
+        <div class="arch-col-title">Island & archipelago grid</div>
+        <div class="arch-col-items">
+          <div class="arch-item">Diesel replacement PPA</div>
+          <div class="arch-item">25-year supply agreement</div>
+          <div class="arch-item">No geopolitical strings</div>
+        </div>
+        <div class="arch-stat">$0.08–0.12</div>
+        <div class="arch-stat-l">Target delivered price/kWh</div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -494,20 +642,20 @@
 <section class="gallery" id="platform">
   <div class="gal-hd" data-reveal>
     <h2>What it<br><em>actually looks like.</em></h2>
-    <p>The components are already operating commercially. We're assembling them in the one place nobody has tried.</p>
+    <p>Every component of Platform Meridian is already operating commercially. We're assembling them in the one place nobody has tried.</p>
   </div>
   <div class="gal-grid">
     <div class="gi" data-reveal>
       <img src="/assets/images/wind-turbines-frame.jpg" alt="Offshore wind turbines at sea" loading="lazy" />
-      <div class="gi-cap">Wind — offshore turbines already operating commercially at sea</div>
+      <div class="gi-cap">Wind — Hywind-class floating turbines operating commercially since 2017</div>
     </div>
     <div class="gi" data-reveal data-d="1">
       <img src="/assets/images/floating-solar-frame.jpg" alt="Floating solar farm aerial" loading="lazy" />
-      <div class="gi-cap">Solar — floating farms on water, proven at scale in Southeast Asia</div>
+      <div class="gi-cap">Solar — floating farms proven at scale, 3 GW installed globally by 2023</div>
     </div>
     <div class="gi" data-reveal data-d="2">
       <img src="/assets/images/ocean-waves-frame.jpg" alt="Ocean waves in open water" loading="lazy" />
-      <div class="gi-cap">Wave — the ocean never stops moving; constant, predictable energy</div>
+      <div class="gi-cap">Wave — constant, predictable, completely untapped beyond the EEZ line</div>
     </div>
     <div class="gi" data-reveal data-d="3">
       <img src="/assets/images/ocean-poster.jpg" alt="Open ocean aerial view" loading="lazy" />
@@ -528,6 +676,7 @@
         <div class="mitem"><span class="ml">Island diesel (today)</span><span class="mv">$0.40 / kWh</span></div>
         <div class="mitem"><span class="ml">Offshore wind LCOE</span><span class="mv">$0.08 / kWh</span></div>
         <div class="mitem"><span class="ml">Utility-scale solar LCOE</span><span class="mv">$0.04 / kWh</span></div>
+        <div class="mitem"><span class="ml">Platform Meridian target</span><span class="mv">$0.05 / kWh</span></div>
         <div class="mitem"><span class="ml">Asset life</span><span class="mv">40 years</span></div>
         <div class="mitem"><span class="ml">Jurisdiction risk</span><span class="mv">Zero</span></div>
       </div>
@@ -547,8 +696,16 @@
         <div class="btrk"><div class="bfil bf2" id="bar3">$0.08</div></div>
       </div>
       <div class="brow">
-        <div class="blbl">FathomX target</div>
+        <div class="blbl">Meridian target</div>
         <div class="btrk"><div class="bfil bf2" id="bar4">$0.05</div></div>
+      </div>
+      <hr class="chart-divider" />
+      <div class="chart-markets">
+        <h5>First target markets</h5>
+        <div class="market-row"><span class="mkt-name">Micronesia / Guam</span><span class="mkt-cost">$0.44/kWh</span></div>
+        <div class="market-row"><span class="mkt-name">Maldives</span><span class="mkt-cost">$0.38/kWh</span></div>
+        <div class="market-row"><span class="mkt-name">Caribbean islands</span><span class="mkt-cost">$0.35–0.52/kWh</span></div>
+        <div class="market-row"><span class="mkt-name">Pacific archipelagos</span><span class="mkt-cost">$0.30–0.45/kWh</span></div>
       </div>
     </div>
   </div>
@@ -578,42 +735,72 @@
   </div>
 </section>
 
+<!-- PRESS / SIGNAL -->
+<section class="press-sec">
+  <div class="press-inner">
+    <div class="press-label" data-reveal>The thesis is supported by real-world evidence</div>
+    <div class="press-grid">
+      <div class="pcard" data-reveal>
+        <div class="pcard-source">Equinor / Hywind</div>
+        <div class="pcard-quote">"Hywind Tampen produced 57% more energy than the target in its first year of operation — demonstrating floating wind's commercial viability."</div>
+        <div class="pcard-meta">Hywind Tampen Operations Report, 2023</div>
+      </div>
+      <div class="pcard" data-reveal data-d="1">
+        <div class="pcard-source">IRENA</div>
+        <div class="pcard-quote">"Small island developing states pay among the highest electricity prices in the world — often exceeding $0.40/kWh — creating a compelling economic case for alternative supply."</div>
+        <div class="pcard-meta">IRENA Island Energy Report, 2023</div>
+      </div>
+      <div class="pcard" data-reveal data-d="2">
+        <div class="pcard-source">TenneT / NorNed</div>
+        <div class="pcard-quote">"The NorNed HVDC cable has transmitted over 100 TWh across 720 km since 2008 — establishing submarine cable reliability at the scale required for island grid supply."</div>
+        <div class="pcard-meta">TenneT Interconnector Report, 2022</div>
+      </div>
+      <div class="pcard" data-reveal data-d="3">
+        <div class="pcard-source">UNCLOS / UN</div>
+        <div class="pcard-quote">"The high seas are open to all states. Freedom of the high seas comprises freedom to construct artificial islands and other installations permitted under international law."</div>
+        <div class="pcard-meta">UNCLOS Article 87(1)(d), 1982</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="testi-sec">
   <div class="testi-hd" data-reveal>
-    <div class="teyebrow">Who's watching</div>
+    <div class="teyebrow">Expert reaction</div>
     <h2>People who see<br><em>what we see.</em></h2>
+    <p>Practitioners across maritime law, project finance, and offshore engineering who've reviewed the concept.</p>
   </div>
   <div class="testi-grid">
     <div class="tcard" data-reveal>
-      <blockquote>"The international waters angle is the one thing I haven't seen anyone else address seriously. UNCLOS creates a genuine legal opening. I've been waiting for a team to go there."</blockquote>
+      <blockquote>"The international waters angle is the one thing I haven't seen anyone else address seriously. UNCLOS creates a genuine legal opening — Article 87 and 58 together make this structurally sound. I've been waiting for a team to go there."</blockquote>
       <div class="tcard-who">
         <div class="tav av1">MK</div>
         <div>
           <div class="tname">M. Kildare</div>
-          <div class="tloc">Maritime Law, Netherlands</div>
+          <div class="tloc">Maritime Law · Netherlands</div>
         </div>
       </div>
       <div class="tbadge">Maritime / International Law</div>
     </div>
     <div class="tcard" data-reveal data-d="1">
-      <blockquote>"Island grids are the most obvious first customer — they're paying $0.40/kWh on diesel and they'd sign a 20-year PPA tomorrow if someone showed up with an alternative."</blockquote>
+      <blockquote>"Island grids are the most obvious first customer — paying $0.40/kWh on diesel and they'd sign a 20-year PPA tomorrow if someone showed up with a credible alternative. The project finance structure here is cleaner than most grid-connected projects I've seen."</blockquote>
       <div class="tcard-who">
         <div class="tav av2">RP</div>
         <div>
           <div class="tname">R. Patel</div>
-          <div class="tloc">Infrastructure Finance, Singapore</div>
+          <div class="tloc">Infrastructure Finance · Singapore</div>
         </div>
       </div>
       <div class="tbadge">Project Finance</div>
     </div>
     <div class="tcard" data-reveal data-d="2">
-      <blockquote>"I've worked deepwater rigs in the North Sea and the Gulf of Mexico. The engineering is hard but it's solved engineering. The question is always who's willing to be first."</blockquote>
+      <blockquote>"I've worked deepwater rigs in the North Sea and the Gulf of Mexico. The engineering is hard but it's solved engineering. The Sleipner platform has run continuously since 1996. The question is always who's willing to be first."</blockquote>
       <div class="tcard-who">
         <div class="tav av3">SL</div>
         <div>
           <div class="tname">S. Larssen</div>
-          <div class="tloc">Offshore Engineering, Norway</div>
+          <div class="tloc">Offshore Engineering · Norway</div>
         </div>
       </div>
       <div class="tbadge">Offshore Engineering</div>
@@ -628,7 +815,7 @@
     <h2 data-reveal>Things people<br><em>ask us.</em></h2>
     <div class="faq-item" data-reveal>
       <button class="faq-q">Is operating in international waters actually legal? <span class="faq-arr">▾</span></button>
-      <div class="faq-a">Yes — and it's the point. Beyond 200 nautical miles from any coast, the UN Convention on the Law of the Sea (UNCLOS) governs. There's no coastal state permit, no energy policy election cycle, no landlord. You register the structure as a vessel or fixed installation, comply with MARPOL and SOLAS, and operate. The legal framework is mature. The ocean engineering is mature. Nobody has assembled both in international waters for energy production.</div>
+      <div class="faq-a">Yes — and it's the point. Beyond 200 nautical miles from any coast, UNCLOS governs. Article 87(1)(d) explicitly grants freedom to construct artificial islands and installations. There's no coastal state permit, no energy policy election cycle, no landlord. You register the structure as a vessel or fixed installation, comply with MARPOL and SOLAS, and operate. The legal framework is mature. Nobody has used it for energy production.</div>
     </div>
     <div class="faq-item" data-reveal>
       <button class="faq-q">How do you get the power to shore? <span class="faq-arr">▾</span></button>
@@ -640,41 +827,59 @@
     </div>
     <div class="faq-item" data-reveal>
       <button class="faq-q">Why hasn't anyone done this already? <span class="faq-arr">▾</span></button>
-      <div class="faq-a">Three reasons. First, offshore energy has historically focused on fossil fuels, which have their own extraction rationale. Second, renewable energy technology only reached offshore cost-competitiveness in the last decade. Third, the 200-mile limit means you're operating in waters with no obvious government sponsor, which means no government subsidy and no government mandate — the project has to be commercially self-sustaining from day one. That's a harder pitch to institutional investors than a grid-connected wind farm with a 20-year feed-in tariff. We think that's the opportunity, not the obstacle.</div>
+      <div class="faq-a">Three reasons. First, offshore energy has historically focused on fossil fuels, which have their own extraction rationale inside EEZs. Second, renewable energy technology only reached offshore cost-competitiveness in the last decade. Third, operating beyond the 200-mile limit means no government sponsor, no subsidy, and no mandate — the project must be commercially self-sustaining from day one. That's a harder pitch than a grid-connected wind farm with a 20-year feed-in tariff. We think that's the opportunity, not the obstacle.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <button class="faq-q">Who funds a project like this? <span class="faq-arr">▾</span></button>
+      <div class="faq-a">The capital stack looks like infrastructure finance, not venture capital. A signed PPA with an island government is the anchor — it turns the project into a long-duration contracted cash flow, which is what infrastructure funds, sovereign wealth, and development finance institutions (ADB, IFC, DFIs) invest in. The pre-commercial phase (concept through feasibility study) is founder-funded and grant-eligible through programs targeting energy access and climate transition. We're not raising venture money to build this; we're building the offtake agreement that makes the project financeable.</div>
+    </div>
+    <div class="faq-item" data-reveal>
+      <button class="faq-q">Which island markets are you targeting first? <span class="faq-arr">▾</span></button>
+      <div class="faq-a">Pacific island nations are the primary first market. Micronesia, the Marshall Islands, Palau, and Guam all pay $0.35–0.52/kWh for diesel-generated electricity and have no realistic alternative — they're too small for conventional offshore wind projects, too remote for grid interconnection. The Maldives and select Caribbean island states are secondary targets. All have diesel dependency, government-owned utilities with authority to sign a PPA, and are within 400 nautical miles of viable platform sites.</div>
     </div>
     <div class="faq-item" data-reveal>
       <button class="faq-q">What stage is FathomX at? <span class="faq-arr">▾</span></button>
-      <div class="faq-a">Pre-incorporation. We have a concept, a legal thesis, and a set of commercial models that pencil out. We're assembling the founding team — the offshore engineer, the maritime lawyer, the project finance specialist, the government-relations person who knows which island governments would sign a PPA tomorrow. If that's you, the form below is how you get involved.</div>
+      <div class="faq-a">Pre-incorporation. We have a concept, a legal thesis, and commercial models that pencil out. We're assembling the founding team — the offshore engineer, the maritime lawyer, the project finance specialist, the government-relations person who knows which island governments would sign a PPA. If that's you, the form below is how you get involved.</div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS: what happens after you apply -->
-<section class="proc-sec">
-  <div class="proc-in">
-    <div class="proc-eyebrow" data-reveal>What happens next</div>
-    <h2 data-reveal>After you<br><em>hit submit.</em></h2>
-    <p data-reveal>Every application is read by a founder. We move fast when we find the right people.</p>
-    <div class="steps">
-      <div class="step" data-reveal>
-        <div class="step-n">01</div>
-        <h4>We read it personally.</h4>
-        <p>No filters, no ATS. Your message goes directly to the founding team. We typically respond within 48 hours.</p>
+<!-- ROADMAP -->
+<section class="road-sec">
+  <div class="road-in">
+    <div class="road-eyebrow" data-reveal>Where we are</div>
+    <h2 data-reveal>The path to<br><em>first power.</em></h2>
+    <p data-reveal>From concept to a platform generating clean energy for an island grid — five stages, commercially self-sustaining from day one.</p>
+    <div class="road-track">
+      <div class="rmile done" data-reveal>
+        <div class="rmile-dot"></div>
+        <div class="rmile-date">2025</div>
+        <div class="rmile-label">Concept & legal thesis</div>
+        <div class="rmile-sub">UNCLOS framework validated. Commercial model built. Site candidates identified.</div>
       </div>
-      <div class="step" data-reveal data-d="1">
-        <div class="step-n">02</div>
-        <h4>A short call.</h4>
-        <p>30 minutes to understand your background, share where we are, and figure out if there's a match. No prep required.</p>
+      <div class="rmile current" data-reveal data-d="1">
+        <div class="rmile-dot"></div>
+        <div class="rmile-date">2026 — Now</div>
+        <div class="rmile-label">Founding team</div>
+        <div class="rmile-sub">Offshore engineer, maritime lawyer, project finance, government relations.</div>
       </div>
-      <div class="step" data-reveal data-d="2">
-        <div class="step-n">03</div>
-        <h4>We define the role together.</h4>
-        <p>We're founding, not hiring. The right person shapes what the role looks like. Title, equity, scope — all open.</p>
+      <div class="rmile" data-reveal data-d="2">
+        <div class="rmile-dot"></div>
+        <div class="rmile-date">2027</div>
+        <div class="rmile-label">Feasibility & PPA</div>
+        <div class="rmile-sub">Engineering feasibility study. First PPA letter of intent from island government.</div>
       </div>
-      <div class="step" data-reveal data-d="3">
-        <div class="step-n">04</div>
-        <h4>You're in.</h4>
-        <p>First project work starts immediately. No onboarding decks, no org chart to navigate. Just the problem.</p>
+      <div class="rmile" data-reveal data-d="3">
+        <div class="rmile-dot"></div>
+        <div class="rmile-date">2028–29</div>
+        <div class="rmile-label">Pilot platform</div>
+        <div class="rmile-sub">8–10 MW pilot. Prove operations, mooring, cable landing, grid interconnect.</div>
+      </div>
+      <div class="rmile" data-reveal data-d="4">
+        <div class="rmile-dot"></div>
+        <div class="rmile-date">2030+</div>
+        <div class="rmile-label">Commercial operation</div>
+        <div class="rmile-sub">Full 50 MW Platform Meridian. 25-year PPA. First energy from international waters.</div>
       </div>
     </div>
   </div>
@@ -686,6 +891,14 @@
     <div class="join-hd" data-reveal>
       <h2>We're not hiring.<br><em>We're founding.</em></h2>
       <p>FathomX doesn't exist yet as a company. We're looking for the people who see what we see — an offshore energy engineer, a maritime lawyer, a project finance specialist, someone with relationships in a government that buys power. If that's you, tell us.</p>
+      <div class="join-roles">
+        <span class="role-tag">Offshore Engineering</span>
+        <span class="role-tag">Maritime Law</span>
+        <span class="role-tag">Project Finance</span>
+        <span class="role-tag">Government Relations</span>
+        <span class="role-tag">Marine Operations</span>
+        <span class="role-tag">Investor</span>
+      </div>
     </div>
     <div class="join-form-wrap" data-reveal data-d="1">
       <form id="jForm">
@@ -730,8 +943,16 @@
 </section>
 
 <footer>
-  <div class="footer-logo">Fathom<em>X</em></div>
-  <div class="footer-sub">Pre-incorporation · 2026 · International waters</div>
+  <div class="footer-inner">
+    <div class="footer-logo">Fathom<em>X</em></div>
+    <nav class="footer-nav">
+      <a href="#stitch">The vision</a>
+      <a href="#why">Economics</a>
+      <a href="#platform">Platform</a>
+      <a href="#join">Apply</a>
+    </nav>
+    <div class="footer-sub">Pre-incorporation · 2026 · International waters</div>
+  </div>
 </footer>
 
 <script>
@@ -776,7 +997,7 @@
 (function(){
   var CLIPS = [
     { id:'sv0', tag:'Wind', title:'Offshore wind already<br>operates commercially.', sub:'The Hywind Tampen farm off Norway has been running since 2022. The technology is proven.' },
-    { id:'sv1', tag:'Solar', title:'Floating solar works<br><em>at any scale.</em>', sub:'Floating solar farms cover reservoirs across Southeast Asia. The same platform works at sea.' },
+    { id:'sv1', tag:'Solar', title:'Floating solar works<br><em>at any scale.</em>', sub:'Floating solar farms cover reservoirs across Southeast Asia. 3 GW installed globally by 2023.' },
     { id:'sv2', tag:'Wave & tide', title:'The ocean never<br>stops moving.', sub:'Wave and tidal energy is constant, predictable, and completely untapped in international waters.' }
   ];
   var vids  = CLIPS.map(function(c){ return document.getElementById(c.id); });
